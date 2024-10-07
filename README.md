@@ -200,7 +200,6 @@ WordPress hosting for the public-facing project provided by [WP Engine](https://
 
 <img width="315" height="60" src="https://user-images.githubusercontent.com/1045274/119288571-cb3ce480-bc16-11eb-9061-9cc264ca16de.jpg" alt="WP Engine Logo" />
 
-## ✨ Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 

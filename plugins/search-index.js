@@ -19,7 +19,8 @@ module.exports = function indexSearch(nextConfig = {}) {
   return Object.assign({}, nextConfig, {
     webpack(config, options) {
       if (config.watchOptions) {
-        config.watchOptions.ignored = (config.watchOptions.ignored || []).concat(path.join('**', plugin.outputDirectory, plugin.outputName));
+        const ignored = config.watchOptions.ignored || [];
+        config.watchOptions.ignored = Array.isArray(ignored) ? ignored.concat(path.join('**', plugin.outputDirectory, plugin.outputName)) : [ignored, path.join('**', plugin.outputDirectory, plugin.outputName)];
       }
 
       config.plugins.push(

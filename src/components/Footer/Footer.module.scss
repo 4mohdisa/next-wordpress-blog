@@ -1,78 +1,52 @@
-@import "styles/settings/__settings";
-
 .footer {
-  width: 100%;
-  border-top: 1px solid $color-gray-100;
+  @apply w-full border-t-[$color-gray-100] border-t border-solid;
 }
-
 .footerMenu {
-  margin: 2rem 0;
-
-  ul {
-    list-style: none;
-    padding: 0;
-  }
+  @apply mx-0 my-8;
 }
+.footerMenu ul {
+  @apply p-0;
+  list-style: none;
+}
+
 
 .footerMenuColumns {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  margin: 0 -2em;
-
-  @media (min-width: 480px) {
-    justify-content: center;
+  @apply flex justify-start flex-wrap mr-[-2em] ml-[-2em] my-0;
+}
+@media (min-width: 480px) {
+  .footerMenuColumns {
+    @apply justify-center;
   }
-
-  & > li {
-    max-width: 15em;
-    margin: 2em;
-  }
+}
+.footerMenuColumns > li {
+  @apply max-w-[15em] m-[2em];
 }
 
 .footerMenuTitle {
-  display: inline-block;
-  color: $color-gray-800;
-  text-decoration: none;
-  margin-bottom: 1.4em;
-  margin-top: 0;
+  @apply inline-block text-gray-800 no-underline mt-0 mb-[1.4em];
 }
 
 .footerMenuItems {
   li {
-    margin-bottom: 1em;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
+    @apply mb-[1em] last:mb-0;
   }
 
   a {
-    display: block;
-    overflow: hidden;
-    color: $color-gray-600;
-    text-decoration: none;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    @apply block overflow-hidden text-gray-600 no-underline whitespace-nowrap text-ellipsis;
+  }
 
-    @media (hover: hover) {
-      &:hover {
-        color: $color-primary;
-        text-decoration: underline;
-      }
+  @media (hover: hover) {
+    a:hover {
+      @apply text-blue-500 underline;
     }
   }
+
 }
 
 .footerLegal {
-  color: $color-gray-400;
-  background-color: $color-gray-900;
-  padding: 0.8rem 0;
-  margin: 0;
+  @apply text-gray-400 bg-gray-900 m-0 px-0 py-[0.8rem];
+}
 
-  p {
-    font-size: 0.9em;
-    text-align: center;
-    margin: 0;
-  }
+.footerLegal p {
+  @apply text-[0.9em] text-center m-0;
 }

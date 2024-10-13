@@ -1,6 +1,12 @@
+import { ButtonHTMLAttributes } from 'react';
 import styles from './Button.module.scss';
+import React from 'react';
 
-const Button = ({ children, className, ...rest }) => {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  className?: string;
+}
+
+const Button: React.FC<ButtonProps> = ({ children, className, ...rest }) => {
   let buttonClassName = styles.button;
 
   if (className) {

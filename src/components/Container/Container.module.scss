@@ -1,7 +1,5 @@
 @import "styles/settings/__settings";
 
 .container {
-  max-width: 60rem;
-  padding: 0 2rem;
-  margin: 0 auto;
+  @apply max-w-[60rem] mx-auto my-0 px-8 py-0;
 }

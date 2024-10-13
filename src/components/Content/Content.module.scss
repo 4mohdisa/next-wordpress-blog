@@ -1,24 +1,23 @@
 @import "styles/settings/__settings";
 
 .content {
-  font-size: 1.5rem;
-
-  h2,
-  h3,
-  h4,
-  p,
-  ul {
-    &:first-child {
-      margin-top: 0;
-    }
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  img {
-    display: block;
-    margin: 0 auto;
-  }
+  @apply text-2xl;
 }
+.content h2:first-child,
+.content h3:first-child,
+.content h4:first-child,
+.content p:first-child,
+.content ul:first-child {
+  @apply mt-0;
+}
+.content h2:last-child,
+.content h3:last-child,
+.content h4:last-child,
+.content p:last-child,
+.content ul:last-child {
+  @apply mb-0;
+}
+.content img {
+  @apply block mx-auto my-0;
+}
+

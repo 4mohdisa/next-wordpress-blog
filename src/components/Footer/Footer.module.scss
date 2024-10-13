@@ -1,9 +1,11 @@
 .footer {
   @apply w-full border-t-[$color-gray-100] border-t border-solid;
 }
+
 .footerMenu {
   @apply mx-0 my-8;
 }
+
 .footerMenu ul {
   @apply p-0;
   list-style: none;
@@ -13,12 +15,14 @@
 .footerMenuColumns {
   @apply flex justify-start flex-wrap mr-[-2em] ml-[-2em] my-0;
 }
+
 @media (min-width: 480px) {
   .footerMenuColumns {
     @apply justify-center;
   }
 }
-.footerMenuColumns > li {
+
+.footerMenuColumns>li {
   @apply max-w-[15em] m-[2em];
 }
 

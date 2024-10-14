@@ -1,8 +1,18 @@
+import React from 'react';
 import ClassName from 'models/classname';
-
 import styles from './Title.module.scss';
 
-const Title = ({ className, title, thumbnail }) => {
+interface Thumbnail {
+  url: string;
+}
+
+interface TitleProps {
+  className?: string;
+  title: string;
+  thumbnail?: Thumbnail;
+}
+
+const Title: React.FC<TitleProps> = ({ className, title, thumbnail }) => {
   const titleClassName = new ClassName(styles.title);
 
   titleClassName.addIf(className, className);

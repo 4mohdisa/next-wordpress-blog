@@ -1,18 +1,12 @@
 @import "styles/settings/__settings";
 
-.image {
-  div {
-    overflow: hidden;
-    margin: 0;
-  }
-
-  p {
-    &:first-child {
-      margin-top: 0;
-    }
-
-    &:last-child {
-      margin-top: 0;
-    }
-  }
+.image div {
+  @apply overflow-hidden m-0;
 }
+.image p:first-child {
+  @apply mt-0;
+}
+.image p:last-child {
+  @apply mt-0;
+}
+

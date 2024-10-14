@@ -1,76 +1,34 @@
 @import "styles/settings/__settings";
 
 .metadata {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  color: $color-gray-600;
+  @apply flex items-center flex-wrap text-[$color-gray-600] mr-[-0.8em] ml-[-0.8em] my-0 p-0;
   list-style: none;
-  padding: 0;
-  margin: 0 -0.8em;
-
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  & > li {
-    margin: 0.8em;
-  }
-
-  p {
-    margin: 0;
-  }
-
-  a {
-    color: inherit;
-    text-decoration: none;
-
-    &:hover {
-      color: $color-primary;
-      text-decoration: underline;
-    }
-  }
 }
-
-.metadataAuthor {
-  a {
-    margin-left: 0.2em;
-  }
-
-  address {
-    display: flex;
-    align-items: center;
-    font-style: normal;
-  }
-
-  img {
-    width: 1.4em;
-    height: auto;
-    border-radius: 50%;
-    margin-right: 0.5em;
-  }
+.metadata ul {
+  @apply m-0 p-0;
+  list-style: none;
 }
-
-.metadataCategories {
-  li {
-    display: inline-block;
-
-    &:after {
-      content: ", ";
-      margin-right: 0.4em;
-    }
-
-    &:last-child {
-      &:after {
-        content: none;
-      }
-    }
-  }
+.metadata > li {
+  @apply m-[0.8em];
 }
-
+.metadata p {
+  @apply m-0;
+}
+.metadata a {
+  @apply text-inherit no-underline hover:text-[$color-primary] hover:underline;
+}
+.metadataAuthor a {
+  @apply ml-[0.2em];
+}
+.metadataAuthor address {
+  @apply flex items-center not-italic;
+}
+.metadataAuthor img {
+  @apply w-[1.4em] h-auto mr-[0.5em] rounded-[50%];
+}
+.metadataCategories li {
+  @apply inline-block after:content-[","] after:mr-[0.4em] last:after:content-none;
+}
 .metadataSticky {
-  font-size: 1.15em;
-  color: $color-gray-300;
+  @apply text-[1.15em] text-[$color-gray-300];
 }

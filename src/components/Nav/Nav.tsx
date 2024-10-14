@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState, useCallback, FormEvent, ChangeEvent } from 'react';
 import Link from 'next/link';
 import { FaSearch } from 'react-icons/fa';
 
@@ -11,14 +11,15 @@ import Section from 'components/Section';
 
 import styles from './Nav.module.scss';
 import NavListItem from 'components/NavListItem';
+import React from 'react';
 
 const SEARCH_VISIBLE = 'visible';
 const SEARCH_HIDDEN = 'hidden';
 
-const Nav = () => {
-  const formRef = useRef();
+const Nav: React.FC = () => {
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const [searchVisibility, setSearchVisibility] = useState(SEARCH_HIDDEN);
+  const [searchVisibility, setSearchVisibility] = useState<string>(SEARCH_HIDDEN);
 
   const { metadata = {}, menus } = useSite();
   const { title } = metadata;
@@ -32,14 +33,7 @@ const Nav = () => {
 
   const searchIsLoaded = state === SEARCH_STATE_LOADED;
 
-  // When the search visibility changes, we want to add an event listener that allows us to
-  // detect when someone clicks outside of the search box, allowing us to close the results
-  // when focus is drawn away from search
-
   useEffect(() => {
-    // If we don't have a query, don't need to bother adding an event listener
-    // but run the cleanup in case the previous state instance exists
-
     if (searchVisibility === SEARCH_HIDDEN) {
       removeDocumentOnClick();
       return;
@@ -48,121 +42,80 @@ const Nav = () => {
     addDocumentOnClick();
     addResultsRoving();
 
-    // When the search box opens up, additionall find the search input and focus
-    // on the element so someone can start typing right away
+    const searchInput = Array.from(formRef.current?.elements ?? []).find(
+      (input) => (input as HTMLInputElement).type === 'search'
+    ) as HTMLInputElement | undefined;
 
-    const searchInput = Array.from(formRef.current.elements).find((input) => input.type === 'search');
-
-    searchInput.focus();
+    searchInput?.focus();
 
     return () => {
       removeResultsRoving();
       removeDocumentOnClick();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchVisibility]);
-
-  /**
-   * addDocumentOnClick
-   */
 
   function addDocumentOnClick() {
     document.body.addEventListener('click', handleOnDocumentClick, true);
   }
 
-  /**
-   * removeDocumentOnClick
-   */
-
   function removeDocumentOnClick() {
     document.body.removeEventListener('click', handleOnDocumentClick, true);
   }
 
-  /**
-   * handleOnDocumentClick
-   */
-
-  function handleOnDocumentClick(e) {
-    if (!e.composedPath().includes(formRef.current)) {
+  function handleOnDocumentClick(e: MouseEvent) {
+    if (!e.composedPath().includes(formRef.current as EventTarget)) {
       setSearchVisibility(SEARCH_HIDDEN);
       clearSearch();
     }
   }
 
-  /**
-   * handleOnSearch
-   */
-
-  function handleOnSearch({ currentTarget }) {
+  function handleOnSearch(e: ChangeEvent<HTMLInputElement>) {
     search({
-      query: currentTarget.value,
+      query: e.currentTarget.value,
     });
   }
-
-  /**
-   * handleOnToggleSearch
-   */
 
   function handleOnToggleSearch() {
     setSearchVisibility(SEARCH_VISIBLE);
   }
 
-  /**
-   * addResultsRoving
-   */
-
   function addResultsRoving() {
     document.body.addEventListener('keydown', handleResultsRoving);
   }
-
-  /**
-   * removeResultsRoving
-   */
 
   function removeResultsRoving() {
     document.body.removeEventListener('keydown', handleResultsRoving);
   }
 
-  /**
-   * handleResultsRoving
-   */
-
-  function handleResultsRoving(e) {
+  function handleResultsRoving(e: KeyboardEvent) {
     const focusElement = document.activeElement;
 
     if (e.key === 'ArrowDown') {
       e.preventDefault();
-      if (focusElement.nodeName === 'INPUT' && focusElement.nextSibling.children[0].nodeName !== 'P') {
-        focusElement.nextSibling.children[0].firstChild.firstChild.focus();
-      } else if (focusElement.parentElement.nextSibling) {
-        focusElement.parentElement.nextSibling.firstChild.focus();
+      if (focusElement?.nodeName === 'INPUT' && focusElement.nextElementSibling?.children[0]?.nodeName !== 'P') {
+        (focusElement.nextElementSibling?.children[0]?.firstChild as HTMLElement)?.focus();
+      } else if (focusElement?.parentElement?.nextElementSibling) {
+        (focusElement.parentElement.nextElementSibling.firstChild as HTMLElement)?.focus();
       } else {
-        focusElement.parentElement.parentElement.firstChild.firstChild.focus();
+        (focusElement?.parentElement?.parentElement?.firstChild?.firstChild as HTMLElement)?.focus();
       }
     }
 
     if (e.key === 'ArrowUp') {
       e.preventDefault();
-      if (focusElement.nodeName === 'A' && focusElement.parentElement.previousSibling) {
-        focusElement.parentElement.previousSibling.firstChild.focus();
+      if (focusElement?.nodeName === 'A' && focusElement.parentElement?.previousElementSibling) {
+        (focusElement.parentElement.previousElementSibling.firstChild as HTMLElement)?.focus();
       } else {
-        focusElement.parentElement.parentElement.lastChild.firstChild.focus();
+        (focusElement?.parentElement?.parentElement?.lastChild?.firstChild as HTMLElement)?.focus();
       }
     }
   }
 
-  /**
-   * escFunction
-   */
-
-  // pressing esc while search is focused will close it
-
-  const escFunction = useCallback((event) => {
-    if (event.keyCode === 27) {
+  const escFunction = useCallback((event: KeyboardEvent) => {
+    if (event.key === 'Escape') {
       clearSearch();
       setSearchVisibility(SEARCH_HIDDEN);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -171,8 +124,7 @@ const Nav = () => {
     return () => {
       document.removeEventListener('keydown', escFunction, false);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [escFunction]);
 
   return (
     <nav className={styles.nav}>
@@ -181,9 +133,9 @@ const Nav = () => {
           <Link href="/">{title}</Link>
         </p>
         <ul className={styles.navMenu}>
-          {navigation?.map((listItem) => {
-            return <NavListItem key={listItem.id} className={styles.navSubMenu} item={listItem} />;
-          })}
+          {navigation?.map((listItem) => (
+            <NavListItem key={listItem.id} className={styles.navSubMenu} item={listItem} />
+          ))}
         </ul>
         <div className={styles.navSearch}>
           {searchVisibility === SEARCH_HIDDEN && (
@@ -204,20 +156,17 @@ const Nav = () => {
                 required
               />
               <div className={styles.navSearchResults}>
-                {results.length > 0 && (
+                {results.length > 0 ? (
                   <ul>
-                    {results.map(({ slug, title }, index) => {
-                      return (
-                        <li key={slug}>
-                          <Link tabIndex={index} href={postPathBySlug(slug)}>
-                            {title}
-                          </Link>
-                        </li>
-                      );
-                    })}
+                    {results.map(({ slug, title }, index) => (
+                      <li key={slug}>
+                        <Link tabIndex={index} href={postPathBySlug(slug)}>
+                          {title}
+                        </Link>
+                      </li>
+                    ))}
                   </ul>
-                )}
-                {results.length === 0 && (
+                ) : (
                   <p>
                     Sorry, not finding anything for <strong>{query}</strong>
                   </p>

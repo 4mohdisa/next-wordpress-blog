@@ -1,8 +1,20 @@
+import React, { ReactNode } from 'react';
 import ClassName from 'models/classname';
-
 import styles from './Image.module.scss';
 
-const Image = ({
+interface ImageProps {
+  children?: ReactNode;
+  className?: string;
+  width?: "100%" | number;
+  height?: "auto" | number;
+  src: string;
+  alt?: string;
+  srcSet?: string;
+  sizes?: string;
+  dangerouslySetInnerHTML?: string;
+}
+
+const Image: React.FC<ImageProps> = ({
   children,
   className,
   width = '100%',
@@ -20,7 +32,14 @@ const Image = ({
   return (
     <figure className={imageClassName.toString()}>
       <div className={styles.featuredImageImg}>
-        <img width={width} height={height} src={src} alt={alt || ''} srcSet={srcSet} sizes={sizes} />
+        <img
+          width={width}
+          height={height}
+          src={src}
+          alt={alt || ''}
+          srcSet={srcSet}
+          sizes={sizes}
+        />
       </div>
       {children && <figcaption>{children}</figcaption>}
       {dangerouslySetInnerHTML && (

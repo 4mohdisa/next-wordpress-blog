@@ -1,233 +1,121 @@
-@import "styles/settings/__settings";
-
 .nav {
-  width: 100%;
-  border-bottom: 1px solid $color-gray-100;
-  padding: 0 1rem;
+  @apply w-full border-b-gray-100 px-4 py-0 border-b border-solid;
 }
-
 .navSection {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  height: 100%;
-  padding-top: 0;
-  padding-bottom: 0;
-  margin: 0;
-
-  @media (min-width: 480px) {
-    justify-content: space-between;
-    flex-direction: row;
+  @apply flex items-center justify-center flex-col h-full m-0 py-0;
+}
+@media (min-width: 480px) {
+  .navSection {
+    @apply justify-between flex-row;
   }
 }
-
 .navName {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-  flex-grow: 1;
-  margin: 0.8em 0 0;
-
-  @media (min-width: 480px) {
-    justify-content: flex-start;
-    margin-top: 0;
-  }
-
-  a {
-    color: $color-gray-500;
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-decoration: none;
-    border-bottom: solid 2px transparent;
-
-    @media (min-width: 480px) {
-      padding: 0.5em;
-      margin-left: -0.5em;
-    }
-
-    &:hover {
-      color: $color-primary;
-    }
+  @apply flex justify-center items-center shrink-0 grow mt-[0.8em] mb-0 mx-0;
+}
+@media (min-width: 480px) {
+  .navName {
+    @apply justify-start mt-0;
   }
 }
-
+.navName a {
+  @apply text-gray-500 text-[1.2rem] font-[bold] no-underline border-b-[solid] border-b-transparent hover:text-blue-500;
+}
+@media (min-width: 480px) {
+  .navName a {
+    @apply ml-[-0.5em] p-[0.5em];
+  }
+}
 .navSearch {
-  flex-grow: 0;
-  margin-left: 1em;
-  form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    padding: 1em;
-
-    @media (min-width: 480px) {
-      justify-content: flex-end;
-      margin-right: -1rem;
-    }
-  }
-
-  input {
-    font-size: 0.845em;
-  }
-
-  button {
-    font-size: 1.2em;
-    background: none;
-    padding: 1.045em;
-    border: none;
-    outline: none;
-    cursor: pointer;
-
-    &[disabled] {
-      svg {
-        fill: $color-gray-200;
-        transition: fill 0.5s;
-      }
-    }
-
-    svg {
-      fill: $color-gray-400;
-      transform: translateY(2px);
-    }
-
-    &:focus {
-      svg {
-        fill: $color-primary;
-      }
-    }
+  @apply grow-0 ml-[1em];
+}
+.navSearch form {
+  @apply flex items-center justify-center relative w-full h-full p-[1em];
+}
+@media (min-width: 480px) {
+  .navSearch form {
+    @apply justify-end mr-[-1rem];
   }
 }
-
+.navSearch input {
+  @apply text-[0.845em];
+}
+.navSearch button {
+  @apply text-[1.2em] cursor-pointer p-[1.045em] border-[none];
+  background: none;
+  outline: none;
+}
+.navSearch button[disabled] svg {
+  @apply fill-gray-200 transition-[fill] duration-[0.5s];
+}
+.navSearch button svg {
+  @apply fill-gray-400 translate-y-0.5;
+}
+.navSearch button:focus svg {
+  @apply fill-blue-500;
+}
 .navSearchResults {
-  display: none;
-  position: absolute;
-  top: 100%;
-  right: 0;
-  width: 100vw;
-  background-color: white;
-  padding: 1.5em;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
-  border-top: solid 5px $color-primary;
-  margin-right: -1rem;
-  z-index: 999;
-
-  @media (min-width: 480px) {
-    width: 30em;
-    margin-right: 0;
-  }
-
-  [data-search-is-active="true"] & {
-    display: block;
-  }
-
-  p {
-    line-height: 1.15;
-    margin: 0;
-  }
-
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: -0.5em 0;
-  }
-
-  a {
-    display: block;
-    color: $color-gray-800;
-    text-decoration: none;
-    padding: 0.5em;
-    margin: 0 -0.5em;
-    &:focus {
-      outline: 2px solid $color-blue-500;
-    }
-
-    @media (hover: hover) {
-      &:hover {
-        color: $color-primary;
-      }
-    }
+  @apply hidden absolute w-screen bg-[white] shadow-[0_3px_6px_rgba(0,0,0,0.3)] border-t-blue-500 mr-[-1rem] z-[999] p-[1.5em] border-t-[solid] right-0 top-full;
+}
+@media (min-width: 480px) {
+  .navSearchResults {
+    @apply w-[30em] mr-0;
   }
 }
-
-.navMenu {
-  display: flex;
-  align-items: center;
-  flex-grow: 0;
+[data-search-is-active="true"] .navSearchResults {
+  @apply block;
+}
+.navSearchResults p {
+  @apply leading-[1.15] m-0;
+}
+.navSearchResults ul {
+  @apply mt-[-0.5em] mb-[-0.5em] mx-0 p-0;
   list-style: none;
-  padding: 0;
-  margin: 0;
-
-  li {
-    position: relative;
-    z-index: 1;
-    margin: 0 0.25em;
-
-    &:first-child {
-      margin-left: 0;
-    }
-
-    &:last-child {
-      margin-right: 0;
-    }
-
-    &:hover {
-      & > a {
-        color: $color-primary;
-      }
-
-      > .navSubMenu {
-        display: block;
-      }
-    }
-
-    & > .navSubMenu {
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-      padding: 0.5em 0.8em;
-    }
-
-    .navSubMenu {
-      ul {
-        top: 0;
-        left: 100%;
-      }
-    }
+}
+.navSearchResults a {
+  @apply block text-gray-800 no-underline mr-[-0.5em] ml-[-0.5em] my-0 p-[0.5em];
+}
+.navSearchResults a:focus {
+  outline: 2px solid blue-500;
+}
+@media (hover: hover) {
+  .navSearchResults a:hover {
+    @apply text-blue-500;
   }
-
-  a {
-    display: block;
-    text-decoration: none;
-    color: $color-gray-600;
-    font-size: 1.1em;
-    padding: 0.5em;
-
-    @media (hover: hover) {
-      &:hover {
-        color: $color-primary;
-      }
-    }
+}
+.navMenu {
+  @apply flex items-center grow-0 m-0 p-0;
+  list-style: none;
+}
+.navMenu li {
+  @apply relative z-[1] mx-[0.25em] my-0 first:ml-0 last:mr-0;
+}
+.navMenu li:hover > a {
+  @apply text-blue-500;
+}
+.navMenu li:hover > .navSubMenu {
+  @apply block;
+}
+.navMenu li > .navSubMenu {
+  @apply shadow-[0_2px_6px_rgba(0,0,0,0.3)] px-[0.8em] py-[0.5em];
+}
+.navMenu li .navSubMenu ul {
+  @apply left-full top-0;
+}
+.navMenu a {
+  @apply block no-underline text-gray-600 text-[1.1em] p-[0.5em];
+}
+@media (hover: hover) {
+  .navMenu a:hover {
+    @apply text-blue-500;
   }
-
-  .navSubMenu {
-    display: none;
-    position: absolute;
-    white-space: nowrap;
-    list-style: none;
-    background-color: #fff;
-    padding: 0;
-
-    li {
-      background-color: white;
-      margin: 0;
-
-      a {
-        font-size: 1rem;
-        padding: 0.3em;
-      }
-    }
-  }
+}
+.navMenu .navSubMenu {
+  @apply hidden absolute whitespace-nowrap bg-white p-0;
+  list-style: none;
+}
+.navMenu .navSubMenu li {
+  @apply bg-[white] m-0;
+}
+.navMenu .navSubMenu li a {
+  @apply text-base p-[0.3em];
 }

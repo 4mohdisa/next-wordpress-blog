@@ -1,10 +1,5 @@
 @import "styles/settings/__settings";
 
 .sectionTitle {
-  color: $color-gray-600;
-  font-weight: normal;
-  padding-bottom: 1em;
-  border-bottom: solid 1px $color-gray-100;
-  margin-top: 0;
-  margin-bottom: 3.5em;
+  @apply text-gray-600 text-base border-b-100 mt-0 mb-[3.5em] pb-[1em] border-b-[solid];
 }

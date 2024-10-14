@@ -8,8 +8,13 @@ import { helmetSettingsFromMetadata } from 'lib/site';
 import Nav from 'components/Nav';
 import Main from 'components/Main';
 import Footer from 'components/Footer';
+import React, { ReactNode } from 'react';
 
-const Layout = ({ children }) => {
+interface LayoutProps {
+  children: ReactNode;
+}
+
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   const router = useRouter();
   const { asPath } = router;
 
@@ -23,7 +28,7 @@ const Layout = ({ children }) => {
 
   const helmetSettings = {
     defaultTitle: metadata.title,
-    titleTemplate: process.env.WORDPRESS_PLUGIN_SEO === true ? '%s' : `%s - ${metadata.title}`,
+    titleTemplate: process.env.WORDPRESS_PLUGIN_SEO === 'true' ? '%s' : `%s - ${metadata.title}`,
     ...helmetSettingsFromMetadata(metadata, {
       setTitle: false,
       link: [
@@ -32,9 +37,6 @@ const Layout = ({ children }) => {
           type: 'application/rss+xml',
           href: '/feed.xml',
         },
-
-        // Favicon sizes and manifest generated via https://favicon.io/
-
         {
           rel: 'apple-touch-icon',
           sizes: '180x180',

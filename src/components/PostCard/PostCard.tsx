@@ -1,17 +1,34 @@
 import Link from 'next/link';
-
 import { postPathBySlug, sanitizeExcerpt } from 'lib/posts';
-
 import Metadata from 'components/Metadata';
-
 import { FaMapPin } from 'react-icons/fa';
 import styles from './PostCard.module.scss';
+import React from 'react';
 
-const PostCard = ({ post, options = {} }) => {
+interface Post {
+  title: string;
+  excerpt?: string;
+  slug: string;
+  date?: string;
+  author?: object;
+  categories?: object[];
+  isSticky?: boolean;
+}
+
+interface PostCardOptions {
+  excludeMetadata?: string[];
+}
+
+interface PostCardProps {
+  post: Post;
+  options?: PostCardOptions;
+}
+
+const PostCard: React.FC<PostCardProps> = ({ post, options = {} }) => {
   const { title, excerpt, slug, date, author, categories, isSticky = false } = post;
   const { excludeMetadata = [] } = options;
 
-  const metadata = {};
+  const metadata: Record<string, any> = {};
 
   if (!excludeMetadata.includes('author')) {
     metadata.author = author;

@@ -1,60 +1,34 @@
 @import "styles/settings/__settings";
 
 .nav {
-  position: relative;
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 6em;
-
-  > * {
-    display: flex;
-    gap: 0.3em;
-    align-items: center;
-    justify-content: center;
-    font-size: 1em;
-  }
-
-  a {
-    color: $color-gray-800;
-    text-decoration: none;
-    cursor: pointer;
-    border: 1px solid $color-gray-200;
-    border-radius: 0.4em;
-    padding: 0.2em 0.8em;
-    &:hover {
-      color: $color-primary;
-      background-color: $color-gray-50;
-    }
-    svg {
-      width: 0.8rem;
-    }
-  }
-
-  ul {
-    list-style-type: none;
-  }
+  @apply relative flex justify-end mt-[6em];
 }
-
+.nav > * {
+  @apply flex gap-[0.3em] items-center justify-center text-[1em];
+}
+.nav a {
+  @apply text-gray-800 no-underline cursor-pointer border border-gray-200 px-[0.8em] py-[0.2em] rounded-[0.4em] border-solid hover:text-blue-500 hover:bg-gray-50;
+}
+.nav a svg {
+  @apply w-[0.8rem];
+}
+.nav ul {
+  @apply list-none;
+}
 .active {
-  font-weight: 600;
-  padding: 0.2em 0.8em;
+  @apply font-semibold px-[0.8em] py-[0.2em];
 }
-
 .pages {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  @media (max-width: 768px) {
-    display: none;
+  @apply absolute -translate-x-2/4 -translate-y-2/4 left-2/4 top-2/4;
+}
+@media (max-width: 768px) {
+  .pages {
+    @apply hidden;
   }
 }
 .prev {
-  margin-right: auto;
+  @apply mr-auto;
 }
-
 .dots {
-  display: flex;
-  align-self: flex-end;
-  margin: 0 0.2rem -0.2rem 0.2rem;
+  @apply flex self-end mb-[-0.2rem] mt-0 mx-[0.2rem];
 }

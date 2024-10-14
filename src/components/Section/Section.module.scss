@@ -1,7 +1,6 @@
 @import "styles/settings/__settings";
 
 .section {
-  width: 100%;
-  padding: 2rem 0;
-  margin: 3rem 0;
+  @apply w-full mx-0 my-12 px-0 py-8;
 }
+

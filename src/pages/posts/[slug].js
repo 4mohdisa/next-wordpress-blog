@@ -81,13 +81,13 @@ export default function Post({ post, socialImage, related }) {
           />
         )}
         <h1
-          className={styles.title}
+          className={`text-7xl leading-snug md:text-4xl md:leading-14  lg:text-5xl lg:leading-tight text-center font-bold  text-gray-900`}
           dangerouslySetInnerHTML={{
             __html: title,
           }}
         />
         <Metadata
-          className={styles.postMetadata}
+          className={`text-4xl md:text-2xl lg:text-xl text-center justify-center`}
           date={date}
           author={author}
           categories={categories}
@@ -100,7 +100,7 @@ export default function Post({ post, socialImage, related }) {
         <Section>
           <Container>
             <div
-              className={styles.content}
+              className={`text-4xl md:text-2xl lg:text-lg ${styles.content}`}
               dangerouslySetInnerHTML={{
                 __html: content,
               }}
@@ -109,19 +109,19 @@ export default function Post({ post, socialImage, related }) {
         </Section>
       </Content>
 
-      <Section className={styles.postFooter}>
+      <Section className={`text-center`}>
         <Container>
-          <p className={styles.postModified}>Last updated on {formatDate(modified)}.</p>
+          <p className={`text-gray-500 italic mb-12`}>Last updated on {formatDate(modified)}.</p>
           {Array.isArray(relatedPostsList) && relatedPostsList.length > 0 && (
-            <div className={styles.relatedPosts}>
+            <div className={`flex flex-col`}>
               {relatedPostsTitle.name ? (
-                <span>
+                <span className='text-[1.2em] mb-[0.4em]'>
                   More from <Link href={relatedPostsTitle.link}>{relatedPostsTitle.name}</Link>
                 </span>
               ) : (
                 <span>More Posts</span>
               )}
-              <ul>
+              <ul className='list-none' >
                 {relatedPostsList.map((post) => (
                   <li key={post.title}>
                     <Link href={postPathBySlug(post.slug)}>{post.title}</Link>

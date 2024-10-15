@@ -3,6 +3,7 @@
 .content {
   @apply text-2xl;
 }
+
 .content h2:first-child,
 .content h3:first-child,
 .content h4:first-child,
@@ -21,3 +22,6 @@
   @apply block mx-auto my-0;
 }
 
+.content h2 {
+  @apply font-bold tracking-wide text-5xl md:text-3xl lg:text-2xl my-10;
+}

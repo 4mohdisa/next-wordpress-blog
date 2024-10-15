@@ -5,28 +5,28 @@
 .header {
   @apply mx-0 my-20;
 }
-.header h1 {
-  @apply leading-[1.15] text-5xl text-center m-0;
-}
-@media (min-width: 480px) {
-  .header h1 {
-    @apply text-[4rem];
-  }
-}
-.header h1 a {
-  @apply text-[$color-primary] no-underline;
-}
-.header h1 a:hover,
-.header h1 a:focus,
-.header h1 a:active {
-  @apply underline;
-}
-.header h1 + ul {
-  @apply mt-[1.5em];
-}
-.header p:last-child {
-  @apply mb-0;
-}
-.header figure {
-  @apply ml-[-2rem] mr-[-2rem];
-}
+// .header h1 {
+//   @apply leading-[1.15] text-5xl text-center m-0;
+// }
+// @media (min-width: 480px) {
+//   .header h1 {
+//     @apply text-[4rem];
+//   }
+// }
+// .header h1 a {
+//   @apply text-[$color-primary] no-underline;
+// }
+// .header h1 a:hover,
+// .header h1 a:focus,
+// .header h1 a:active {
+//   @apply underline;
+// }
+// .header h1 + ul {
+//   @apply mt-[1.5em];
+// }
+// .header p:last-child {
+//   @apply mb-0;
+// }
+// .header figure {
+//   @apply ml-[-2rem] mr-[-2rem];
+// }

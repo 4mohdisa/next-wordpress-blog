@@ -18,10 +18,70 @@
 .content ul:last-child {
   @apply mb-0;
 }
-.content img {
-  @apply block mx-auto my-0;
-}
 
 .content h2 {
   @apply font-bold tracking-wide text-5xl md:text-3xl lg:text-2xl my-10;
+}
+
+.content video {
+  @apply block mx-auto my-10 w-full;
+}
+
+.content img {
+  @apply block mx-auto my-10 w-full;
+}
+
+.content a {
+  @apply underline;
+}
+
+.content :global(.remark-code-title) {
+  @apply bg-zinc-800 text-4xl md:text-2xl lg:text-base leading-5 font-bold font-mono text-gray-200 px-5 py-8 md:py-5 lg:py-3 rounded-tl rounded-tr;
+  font-family: "Menlo", "Monaco", "Courier New", "DejaVu Sans Mono", monospace;
+}
+
+
+.content :global(.code-container-div > pre > code > .code-line.deleted) {
+  @apply bg-red-500/20 p-0 m-0;
+}
+
+.content :global(.code-container-div > pre > code > .code-line.inserted) {
+  @apply bg-green-500/20 p-0 m-0;
+}
+
+.content :global(.code-container-div > pre > code > .code-line) {
+  @apply block w-full m-0 p-0;
+}
+
+.content :global(.code-container-div > pre > code > span) {
+  @apply block w-full m-0 p-0;
+}
+
+.content :global(.prose) {
+  @apply text-blue-500 font-semibold;
+}
+
+.content a:hover {
+  @apply text-blue-500;
+}
+
+.content :global(.code-container-div) {
+  @apply relative;
+}
+
+.content :global(.code-container-div > pre) {
+  @apply mt-0 rounded-t-none bg-black text-white rounded-bl rounded-br;
+}
+
+.content :global(.code-container-div > pre > code) {
+  @apply overflow-x-auto font-normal text-[0.875em] leading-[1.7142857] p-0 m-0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    Liberation Mono, Courier New, monospace;
+  font-feature-settings: normal;
+  font-variation-settings: normal;
+}
+
+
+.content ul li {
+  @apply list-disc my-2;
 }

@@ -80,6 +80,8 @@ export default function Post({ post, socialImage, related }) {
             dangerouslySetInnerHTML={featuredImage.caption}
           />
         )}
+        <p className={`text-gray-500 text-center`}>Last updated on {formatDate(modified)}.</p>
+
         <h1
           className={`text-7xl leading-snug md:text-4xl md:leading-14  lg:text-5xl lg:leading-tight text-center font-bold  text-gray-900`}
           dangerouslySetInnerHTML={{
@@ -100,7 +102,7 @@ export default function Post({ post, socialImage, related }) {
         <Section>
           <Container>
             <div
-              className={`text-4xl md:text-2xl lg:text-lg ${styles.content}`}
+              className={`text-4xl md:text-2xl lg:text-base ${styles.content}`}
               dangerouslySetInnerHTML={{
                 __html: content,
               }}
@@ -111,7 +113,6 @@ export default function Post({ post, socialImage, related }) {
 
       <Section className={`text-center`}>
         <Container>
-          <p className={`text-gray-500 italic mb-12`}>Last updated on {formatDate(modified)}.</p>
           {Array.isArray(relatedPostsList) && relatedPostsList.length > 0 && (
             <div className={`flex flex-col`}>
               {relatedPostsTitle.name ? (

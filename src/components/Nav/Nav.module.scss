@@ -45,7 +45,7 @@
   outline: none;
 }
 .navSearch button[disabled] svg {
-  @apply fill-gray-200 transition-[fill] duration-[0.5s];
+  @apply fill-gray-200 transition-[fill] duration-500;
 }
 .navSearch button svg {
   @apply fill-gray-400 translate-y-0.5;

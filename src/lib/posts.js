@@ -1,7 +1,7 @@
-import { getApolloClient } from 'lib/apollo-client';
+import { getApolloClient } from '../lib/apollo-client';
 
-import { updateUserAvatar } from 'lib/users';
-import { sortObjectsByDate } from 'lib/datetime';
+import { updateUserAvatar } from '../lib/users';
+import { sortObjectsByDate } from '../lib/datetime';
 
 import {
   QUERY_ALL_POSTS_INDEX,
@@ -16,7 +16,7 @@ import {
   QUERY_POSTS_BY_CATEGORY_ID,
   QUERY_POST_SEO_BY_SLUG,
   QUERY_POST_PER_PAGE,
-} from 'data/posts';
+} from '../data/posts';
 
 /**
  * postPathBySlug

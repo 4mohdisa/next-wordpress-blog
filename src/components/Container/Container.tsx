@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import ClassName from 'models/classname';
+import ClassName from '../../models/ClassName';
 import styles from './Container.module.scss';
 import React from 'react';
 

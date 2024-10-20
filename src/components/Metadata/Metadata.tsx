@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { categoryPathBySlug } from 'lib/categories';
-import { authorPathByName } from 'lib/users';
-import { formatDate } from 'lib/datetime';
-import ClassName from 'models/classname';
+import { categoryPathBySlug } from '../../lib/categories';
+import { authorPathByName } from '../../lib/users';
+import { formatDate } from '../../lib/datetime';
+import ClassName from '../../models/ClassName';
 
 import { FaMapPin } from 'react-icons/fa';
 import styles from './Metadata.module.scss';
@@ -64,7 +64,6 @@ const Metadata: React.FC<MetadataProps> = ({
                 alt="Author Avatar"
               />
             )}
-            By{' '}
             <Link href={authorPathByName(author.name)} rel="author">
               {author.name}
             </Link>

@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import Container from 'components/Container';
+import Container from '../Container/Container';
 import styles from './Header.module.scss';
 
 interface HeaderProps {

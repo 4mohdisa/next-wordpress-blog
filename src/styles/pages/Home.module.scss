@@ -1,25 +1,16 @@
-@import "styles/settings/__settings";
+// @import "styles/settings/__settings";
 
+.title {
+  @apply text-center text-[2.5rem] mb-6;
+}
 .description {
-  text-align: center;
-  line-height: 1.5;
-  font-size: 1.5rem;
+  @apply text-center leading-normal text-2xl;
 }
-
 .posts {
+  @apply mt-[-1rem] mb-[-1rem] mx-0 pl-0;
   list-style: none;
-  padding-left: 0;
-  margin: -1rem 0;
-
-  & > li {
-    margin: 4em 0;
-
-    &:first-child {
-      margin-top: 0;
-    }
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
 }
+.posts > li {
+  @apply mx-0 my-[4em] first:mt-0 last:mb-0;
+}
+

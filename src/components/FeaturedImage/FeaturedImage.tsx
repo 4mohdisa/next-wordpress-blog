@@ -1,5 +1,5 @@
-import ClassName from 'models/classname';
-import Image from 'components/Image';
+import ClassName from '../../models/Classname';
+import Image from '../../components/Image';
 import styles from './FeaturedImage.module.scss';
 import React from 'react';
 
@@ -12,7 +12,7 @@ interface FeaturedImageProps {
   [key: string]: any; // For any other props passed to the Image component
 }
 
-const FeaturedImage: React.FC<FeaturedImageProps> = ({ className, alt, src, srcSet, sizes, ...rest }) => {
+const FeaturedImage: React.FC<FeaturedImageProps> = ({ className, alt, src = '', srcSet, sizes, ...rest }) => {
   const featuredImageClassName = new ClassName(styles.featuredImage);
 
   featuredImageClassName.addIf(className, className);

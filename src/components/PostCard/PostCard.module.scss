@@ -1,10 +1,10 @@
-@import "styles/settings/__settings";
+// @import "styles/settings/__settings";
 
 .postCard {
-  @apply relative text-inherit text-left no-underline p-[1.2em];
+  @apply relative text-inherit text-left no-underline p-[1.2em] border border-gray-200 hover:border-gray-300  transition-all rounded-[0.5em];
 }
 .postCard > a {
-  @apply block text-inherit no-underline;
+  @apply block text-inherit no-underline transition-all;
 }
 .postCard > a:hover h3 {
   @apply text-blue-500 underline;
@@ -16,10 +16,10 @@
   @apply absolute text-[1.15em] text-gray-300 right-[1em] top-[1.2em];
 }
 .postCardTitle {
-  @apply text-[1.5em] mt-0 mb-[1em] mx-0;
+  @apply text-xl mt-0 mb-[1em] mx-0;
 }
 .postCardContent {
-  @apply text-[1.25em] m-0;
+  @apply text-base m-0 text-gray-500;
 }
 .postCardContent p:first-child {
   @apply mt-0;

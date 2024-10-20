@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import ClassName from 'models/classname';
+import ClassName from '../../models/Classname';
 import styles from './Breadcrumbs.module.scss';
 import React from 'react';
 

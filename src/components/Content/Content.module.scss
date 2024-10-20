@@ -1,4 +1,4 @@
-@import "styles/settings/__settings";
+// @import "styles/settings/__settings";
 
 .content {
   @apply text-2xl;
@@ -20,8 +20,9 @@
 }
 
 .content h2 {
-  @apply font-bold tracking-wide text-5xl md:text-3xl lg:text-2xl my-10;
+  @apply font-semibold tracking-wide text-3xl sm:text-3xl md:text-2xl lg:text-2xl my-10 text-black dark:text-white;
 }
+
 
 .content video {
   @apply block mx-auto my-10 w-full;
@@ -81,7 +82,10 @@
   font-variation-settings: normal;
 }
 
-
 .content ul li {
-  @apply list-disc my-2;
+  @apply list-disc my-3 md:my-3 lg:my-3;
+}
+
+.content ol li {
+  @apply list-decimal my-20 md:my-3 lg:my-5 ml-6 md:ml-4 lg:ml-3 leading-normal;
 }

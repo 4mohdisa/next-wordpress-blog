@@ -1,4 +1,4 @@
-import { getApolloClient } from 'lib/apollo-client';
+import { getApolloClient } from '../lib/apollo-client';
 
 import {
   QUERY_ALL_PAGES_INDEX,
@@ -6,7 +6,7 @@ import {
   QUERY_ALL_PAGES,
   QUERY_PAGE_BY_URI,
   QUERY_PAGE_SEO_BY_URI,
-} from 'data/pages';
+} from '../data/pages';
 
 /**
  * pagePathBySlug

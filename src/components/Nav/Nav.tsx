@@ -2,15 +2,15 @@ import { useEffect, useRef, useState, useCallback, FormEvent, ChangeEvent } from
 import Link from 'next/link';
 import { FaSearch } from 'react-icons/fa';
 
-import useSite from 'hooks/use-site';
-import useSearch, { SEARCH_STATE_LOADED } from 'hooks/use-search';
-import { postPathBySlug } from 'lib/posts';
-import { findMenuByLocation, MENU_LOCATION_NAVIGATION_DEFAULT } from 'lib/menus';
+import useSite from '../../hooks/use-site';
+import useSearch, { SEARCH_STATE_LOADED } from '../../hooks/use-search';
+import { postPathBySlug } from '../../lib/posts';
+import { findMenuByLocation, MENU_LOCATION_NAVIGATION_DEFAULT } from '../../lib/menus';
 
-import Section from 'components/Section';
+import Section from '../../components/Section';
 
 import styles from './Nav.module.scss';
-import NavListItem from 'components/NavListItem';
+import NavListItem from '../../components/NavListItem';
 import React from 'react';
 
 const SEARCH_VISIBLE = 'visible';
@@ -26,6 +26,11 @@ const Nav: React.FC = () => {
 
   const navigationLocation = process.env.WORDPRESS_MENU_LOCATION_NAVIGATION || MENU_LOCATION_NAVIGATION_DEFAULT;
   const navigation = findMenuByLocation(menus, navigationLocation);
+
+  interface SearchResult {
+    slug: string;
+    title: string;
+  }
 
   const { query, results, search, clearSearch, state } = useSearch({
     maxResults: 5,
@@ -133,7 +138,7 @@ const Nav: React.FC = () => {
           <Link href="/">{title}</Link>
         </p>
         <ul className={styles.navMenu}>
-          {navigation?.map((listItem) => (
+          {navigation?.map((listItem: { id: string; label: string; [key: string]: any }) => (
             <NavListItem key={listItem.id} className={styles.navSubMenu} item={listItem} />
           ))}
         </ul>
@@ -158,7 +163,7 @@ const Nav: React.FC = () => {
               <div className={styles.navSearchResults}>
                 {results.length > 0 ? (
                   <ul>
-                    {results.map(({ slug, title }, index) => (
+                    {results.map(({ slug, title }: any, index: number | undefined) => (
                       <li key={slug}>
                         <Link tabIndex={index} href={postPathBySlug(slug)}>
                           {title}

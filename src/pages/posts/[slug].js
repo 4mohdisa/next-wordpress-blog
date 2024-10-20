@@ -1,23 +1,23 @@
 import Link from 'next/link';
 import { Helmet } from 'react-helmet';
 
-import { getPostBySlug, getRecentPosts, getRelatedPosts, postPathBySlug } from 'lib/posts';
-import { categoryPathBySlug } from 'lib/categories';
-import { formatDate } from 'lib/datetime';
-import { ArticleJsonLd } from 'lib/json-ld';
-import { helmetSettingsFromMetadata } from 'lib/site';
-import useSite from 'hooks/use-site';
-import usePageMetadata from 'hooks/use-page-metadata';
+import { getPostBySlug, getRecentPosts, getRelatedPosts, postPathBySlug } from '../../lib/posts';
+import { categoryPathBySlug } from '../../lib/categories';
+import { formatDate } from '../../lib/datetime';
+import { ArticleJsonLd } from '../../lib/json-ld';
+import { helmetSettingsFromMetadata } from '../../lib/site';
+import useSite from '../../hooks/use-site';
+import usePageMetadata from '../../hooks/use-page-metadata';
 
-import Layout from 'components/Layout';
-import Header from 'components/Header';
-import Section from 'components/Section';
-import Container from 'components/Container';
-import Content from 'components/Content';
-import Metadata from 'components/Metadata';
-import FeaturedImage from 'components/FeaturedImage';
+import Layout from '../../components/Layout';
+import Header from '../../components/Header';
+import Section from '../../components/Section';
+import Container from '../../components/Container';
+import Content from '../../components/Content';
+import Metadata from '../../components/Metadata';
+import FeaturedImage from '../../components/FeaturedImage';
 
-import styles from 'styles/pages/Post.module.scss';
+import styles from '../../styles/pages/Post.module.scss';
 
 export default function Post({ post, socialImage, related }) {
   const {
@@ -80,16 +80,16 @@ export default function Post({ post, socialImage, related }) {
             dangerouslySetInnerHTML={featuredImage.caption}
           />
         )}
-        <p className={`text-gray-500 text-center`}>Last updated on {formatDate(modified)}.</p>
+        <p className={`${styles.postModified}`}>Last updated on {formatDate(modified)}.</p>
 
         <h1
-          className={`text-7xl leading-snug md:text-4xl md:leading-14  lg:text-5xl lg:leading-tight text-center font-bold  text-gray-900`}
+          className={`${styles.postTitle}`}
           dangerouslySetInnerHTML={{
             __html: title,
           }}
         />
         <Metadata
-          className={`text-4xl md:text-2xl lg:text-xl text-center justify-center`}
+          className={`${styles.postMetadata}`}
           date={date}
           author={author}
           categories={categories}
@@ -102,7 +102,7 @@ export default function Post({ post, socialImage, related }) {
         <Section>
           <Container>
             <div
-              className={`text-4xl md:text-2xl lg:text-base ${styles.content}`}
+              className={`${styles.postContent}`}
               dangerouslySetInnerHTML={{
                 __html: content,
               }}

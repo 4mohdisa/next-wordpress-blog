@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import Link from 'next/link';
-import useSite from 'hooks/use-site';
-import { postPathBySlug } from 'lib/posts';
-import { categoryPathBySlug } from 'lib/categories';
-import Section from 'components/Section';
-import Container from 'components/Container';
+import useSite from '../../hooks/use-site';
+import { postPathBySlug } from '../../lib/posts';
+import { categoryPathBySlug } from '../../lib/categories';
+import Section from '../../components/Section';
+import Container from '../../components/Container';
 import styles from './Footer.module.scss';
 
 interface Post {
@@ -36,7 +36,7 @@ const Footer: React.FC = () => {
               {hasRecentPosts && (
                 <li>
                   <Link href="/posts/" className={styles.footerMenuTitle}>
-                    <strong>Recent Posts</strong>
+                    Recent Posts
                   </Link>
                   <ul className={styles.footerMenuItems}>
                     {recentPosts.map((post: Post) => {
@@ -56,7 +56,7 @@ const Footer: React.FC = () => {
                 <li>
                   <Link href="/categories/" className={styles.footerMenuTitle}>
 
-                    <strong>Categories</strong>
+                    Categories
 
                   </Link>
                   <ul className={styles.footerMenuItems}>
@@ -74,9 +74,9 @@ const Footer: React.FC = () => {
                 </li>
               )}
               <li>
-                <p className={styles.footerMenuTitle}>
-                  <strong>More</strong>
-                </p>
+                <h2 className={styles.footerMenuTitle}>
+                  More
+                </h2>
                 <ul className={styles.footerMenuItems}>
                   <li>
                     <a href="/feed.xml">RSS</a>

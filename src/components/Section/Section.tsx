@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
-import ClassName from 'models/classname';
+// import ClassName from '../../models/className';
 import styles from './Section.module.scss';
+import ClassName from '../../models/Classname';
 
 interface SectionProps extends React.HTMLAttributes<HTMLElement> {
   children: ReactNode;

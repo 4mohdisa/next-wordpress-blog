@@ -1,21 +1,21 @@
 import Link from 'next/link';
 import { Helmet } from 'react-helmet';
 
-import { getPageByUri, getAllPages, getBreadcrumbsByUri } from 'lib/pages';
-import { WebpageJsonLd } from 'lib/json-ld';
-import { helmetSettingsFromMetadata } from 'lib/site';
-import useSite from 'hooks/use-site';
-import usePageMetadata from 'hooks/use-page-metadata';
+import { getPageByUri, getAllPages, getBreadcrumbsByUri } from '../../lib/pages';
+import { WebpageJsonLd } from '../../lib/json-ld';
+import { helmetSettingsFromMetadata } from '../../lib/site';
+import useSite from '../../hooks/use-site';
+import usePageMetadata from '../../hooks/use-page-metadata';
 
-import Layout from 'components/Layout';
-import Header from 'components/Header';
-import Content from 'components/Content';
-import Section from 'components/Section';
-import Container from 'components/Container';
-import FeaturedImage from 'components/FeaturedImage';
-import Breadcrumbs from 'components/Breadcrumbs';
+import Layout from '../../components/Layout';
+import Header from '../../components/Header';
+import Content from '../../components/Content';
+import Section from '../../components/Section';
+import Container from '../../components/Container';
+import FeaturedImage from '../../components/FeaturedImage';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
-import styles from 'styles/pages/Page.module.scss';
+import styles from '../../styles/pages/Page.module.scss';
 
 export default function Page({ page, breadcrumbs }) {
   const { title, metaTitle, description, slug, content, featuredImage, children } = page;

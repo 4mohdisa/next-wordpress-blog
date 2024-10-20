@@ -1,30 +1,32 @@
 // @import "styles/settings/__settings";
 
 
-// .postMetadata {
-//   text-align: center;
-//   justify-content: center;
-// }
+.postMetadata {
+    @apply text-center justify-center;
+  }
+  .postFooter {
+    @apply text-center;
+  }
+  .postModified {
+    @apply text-2xl sm:text-xl md:text-lg lg:text-base xl:text-sm text-gray-500 dark:text-gray-100 italic mb-12 text-center;
+  }
+  
+  .relatedPosts {
+    @apply flex flex-col;
+  }
+  .relatedPosts span {
+    @apply text-[1.2em] mb-[0.4em];
+  }
+  .postTitle {
+    @apply text-3xl leading-snug sm:text-4xl sm:leading-snug md:text-4xl md:leading-10 lg:text-5xl lg:leading-tight xl:text-5xl xl:leading-tight text-center font-bold text-gray-900 dark:text-white;
+  }
 
-// .postFooter {
-//   text-align: center;
-// }
-
-// .postModified {
-//   color: $color-gray-500;
-//   font-style: italic;
-//   margin-bottom: 3rem;
-// }
-
-// .relatedPosts {
-//   display: flex;
-//   flex-direction: column;
-//   span {
-//     font-size: 1.2em;
-//     margin-bottom: 0.4em;
-//   }
-//   ul {
-//     list-style: none;
-//   }
-// }
-
+  .postContent {
+    @apply text-2xl sm:text-xl md:text-lg lg:text-base xl:text-base text-gray-900 dark:text-gray-50;
+  }
+  
+  .relatedPosts ul {
+    list-style: none;
+  }
+  
+  

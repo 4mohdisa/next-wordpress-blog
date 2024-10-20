@@ -1,8 +1,8 @@
-import usePageMetadata from 'hooks/use-page-metadata';
+import usePageMetadata from '../hooks/use-page-metadata';
 
-import { getPaginatedPosts } from 'lib/posts';
+import { getPaginatedPosts } from '../lib/posts';
 
-import TemplateArchive from 'templates/archive';
+import TemplateArchive from '../templates/archive';
 
 export default function Posts({ posts, pagination }) {
   const title = 'All Posts';

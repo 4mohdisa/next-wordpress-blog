@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import ClassName from 'models/classname';
+import ClassName from '../../models/Classname';
 import styles from './Image.module.scss';
 
 interface ImageProps {

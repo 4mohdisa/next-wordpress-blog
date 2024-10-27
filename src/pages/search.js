@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import usePageMetadata from 'hooks/use-page-metadata';
+import usePageMetadata from '../hooks/use-page-metadata';
 
-import useSearch from 'hooks/use-search';
+import useSearch from '../hooks/use-search';
 
-import TemplateArchive from 'templates/archive';
+import TemplateArchive from '../templates/archive';
 
 export default function Search() {
   const { query, results, search } = useSearch();

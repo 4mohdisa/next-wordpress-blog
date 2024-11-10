@@ -8,6 +8,7 @@ import {
   PaginationEllipsis,
   PaginationItem,
   PaginationLink,
+  
 } from "../../@/components/ui/pagination"
 
 const MAX_NUM_PAGES = 9;
@@ -63,15 +64,14 @@ export default function PaginationComponent({ pagesCount, currentPage, basePath,
               href={`${path}${currentPage - 1}`}
               className={`flex items-center gap-1 px-3 py-2 text-sm rounded hover:no-underline transition-colors 
                 ${hasPreviousPage
-                  ? 'text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700'
-                  : 'text-gray-400 dark:text-gray-600 bg-gray-100 dark:bg-gray-800 cursor-not-allowed'}`}
+                  ? 'text-gray-700 dark:text-gray-300 bg-white dark:bg-slate-900 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700'
+                  : 'text-gray-400 dark:text-gray-600 bg-gray-100 dark:bg-slate-900 cursor-not-allowed'}`}
               aria-label="Go to previous page"
               aria-disabled={!hasPreviousPage}
               tabIndex={!hasPreviousPage ? -1 : undefined}
               onClick={(e) => !hasPreviousPage && e.preventDefault()}
             >
-              <ChevronLeft className="w-4 h-4" />
-              Previous
+              <ChevronLeft className="w-4 h-4 dark:text-slate-100" />
             </PaginationLink>
           </PaginationItem>
 
@@ -89,7 +89,7 @@ export default function PaginationComponent({ pagesCount, currentPage, basePath,
                   className={`px-3 py-2 text-sm rounded hover:no-underline transition-colors
                     ${page === currentPage
                       ? 'bg-primary text-primary-foreground font-semibold border border-gray-300 dark:border-gray-600 rounded hover:no-underline'
-                      : 'text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700'
+                      : 'text-gray-700 dark:text-gray-300 bg-white dark:bg-slate-900 border border-gray-300 dark:border-slate-900 hover:bg-gray-50 dark:hover:bg-slate-900'
                     }`}
                   aria-label={`Go to page ${page}`}
                   aria-current={page === currentPage ? "page" : undefined}
@@ -118,8 +118,8 @@ export default function PaginationComponent({ pagesCount, currentPage, basePath,
               tabIndex={!hasNextPage ? -1 : undefined}
               onClick={(e) => !hasNextPage && e.preventDefault()}
             >
-              Next
-              <ChevronRight className="w-4 h-4" />
+              
+              <ChevronRight className="w-4 h-4 dark:text-slate-100" />
             </PaginationLink>
           </PaginationItem>
         </PaginationContent>

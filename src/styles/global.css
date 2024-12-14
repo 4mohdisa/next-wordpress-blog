@@ -2,61 +2,119 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
-    --radius: 0.5rem;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-  }
+:root {
+  /* Base colors */
+  --background: #FFFFFF;
+  --foreground: #000000;
+  
+  /* Navigation and Footer */
+  --nav-bg: #FFFFFF;
+  --footer-bg: #FFFFFF;
+  
+  /* Text colors */
+  --text-primary: #000000;
+  --text-secondary: #555555;
+  --text-muted: #666666;
+  --text-headline: #1a1a1a;
+  --text-quote: #2a2a2a;
+  --text-description: #444444;
+  
+  /* Component backgrounds */
+  --header-footer-bg: #FFFFFF;
+  --card-bg: #FAFAFA;
+  --popover-bg: #FFFFFF;
+  --highlighted-bg: #F5F5F5;
+  --code-block-bg: #F1F1F1;
+  
+  /* Borders */
+  --border-default: #E5E5E5;
+  --border-active: #000000;
+  --input-border: #D1D1D1;
+  
+  /* Buttons */
+  --button-primary-bg: #0070F3;
+  --button-primary-text: #FFFFFF;
+  --button-secondary-bg: #EAEAEA;
+  --button-secondary-text: #000000;
+  
+  /* Links */
+  --link-default: #0070F3;
+  --link-hover: #005BB5;
+  
+  /* Icons */
+  --icon-primary: #000000;
+  --icon-secondary: #666666;
+  
+  /* Accents */
+  --accent-1: #FFD700;
+  --accent-2: #32CD32;
+  --accent-3: #FF4500;
+}
 
-  .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-  }
+.dark {
+  /* Base colors */
+  --background: #2c2c2c;
+  --foreground: #FFFFFF;
+  
+  /* Navigation and Footer */
+  --nav-bg: #000000;
+  --footer-bg: #000000;
+  
+  /* Text colors */
+  --text-primary: #FFFFFF;
+  --text-secondary: #CCCCCC;
+  --text-muted: #999999;
+  --text-headline: #FFFFFF;
+  --text-quote: #E0E0E0;
+  --text-description: #B0B0B0;
+  
+  /* Component backgrounds */
+  --header-footer-bg: #000000;
+  --card-bg: #1E1E1E;
+  --popover-bg: #1E1E1E;
+  --highlighted-bg: #333333;
+  --code-block-bg: #2D2D2D;
+  
+  /* Borders */
+  --border-default: #404040;
+  --border-active: #666666;
+  --input-border: #444444;
+  
+  /* Buttons */
+  --button-primary-bg: #0070F3;
+  --button-primary-text: #FFFFFF;
+  --button-secondary-bg: #333333;
+  --button-secondary-text: #FFFFFF;
+  
+  /* Links */
+  --link-default: #3B82F6;
+  --link-hover: #60A5FA;
+  
+  /* Icons */
+  --icon-primary: #FFFFFF;
+  --icon-secondary: #CCCCCC;
+  
+  /* Accents remain the same for consistency */
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-primary);
+}
+
+header, footer {
+  background-color: var(--header-footer-bg);
+  color: var(--text-primary);
+}
+
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-default);
+}
+
+.button-primary {
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-text);
 }
 
 @layer base {

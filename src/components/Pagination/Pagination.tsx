@@ -58,72 +58,80 @@ export default function PaginationComponent({ pagesCount, currentPage, basePath,
       </Helmet>
 
       <Pagination className="my-8">
-        <PaginationContent className="flex flex-wrap items-center justify-center gap-4">
-          <PaginationItem className="mr-4">
-            <PaginationLink
-              href={`${path}${currentPage - 1}`}
-              className={`flex items-center gap-1 px-3 py-2 text-sm rounded hover:no-underline transition-colors 
-                ${hasPreviousPage
-                  ? 'text-gray-700 dark:text-gray-300 bg-white dark:bg-slate-900 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700'
-                  : 'text-gray-400 dark:text-gray-600 bg-gray-100 dark:bg-slate-900 cursor-not-allowed'}`}
-              aria-label="Go to previous page"
-              aria-disabled={!hasPreviousPage}
-              tabIndex={!hasPreviousPage ? -1 : undefined}
-              onClick={(e) => !hasPreviousPage && e.preventDefault()}
-            >
-              <ChevronLeft className="w-4 h-4 dark:text-slate-100" />
-            </PaginationLink>
-          </PaginationItem>
+  <PaginationContent className="flex flex-wrap items-center justify-center gap-4">
+    {/* Previous Button */}
+    <PaginationItem className="mr-4 ">
+      <PaginationLink
+        href={`${path}${currentPage - 1}`}
+        className={`flex items-center gap-1 px-3 py-2 text-sm rounded hover:no-underline transition-colors 
+          ${
+            hasPreviousPage
+              ? 'text-black dark:text-white bg-white dark:bg-black border border-gray-300 dark:border-white hover:bg-gray-50 dark:hover:bg-gray-800'
+              : 'text-gray-400 dark:text-gray-600 bg-gray-100 dark:bg-black cursor-not-allowed border-gray-300 dark:border-gray-700'
+          }`}
+        aria-label="Go to previous page"
+        aria-disabled={!hasPreviousPage}
+        tabIndex={!hasPreviousPage ? -1 : undefined}
+        onClick={(e) => !hasPreviousPage && e.preventDefault()}
+      >
+        <ChevronLeft className="w-4 h-4" />
+      </PaginationLink>
+    </PaginationItem>
 
-          <div className="flex items-center gap-2">
-            {hasPrevDots && (
-              <PaginationItem>
-                <PaginationEllipsis />
-              </PaginationItem>
-            )}
+    {/* Page Numbers */}
+    <div className="flex items-center gap-2">
+      {hasPrevDots && (
+        <PaginationItem>
+          <PaginationEllipsis />
+        </PaginationItem>
+      )}
 
-            {pages.map((page) => (
-              <PaginationItem key={page}>
-                <PaginationLink 
-                  href={`${path}${page}`}
-                  className={`px-3 py-2 text-sm rounded hover:no-underline transition-colors
-                    ${page === currentPage
-                      ? 'bg-primary text-primary-foreground font-semibold border border-gray-300 dark:border-gray-600 rounded hover:no-underline'
-                      : 'text-gray-700 dark:text-gray-300 bg-white dark:bg-slate-900 border border-gray-300 dark:border-slate-900 hover:bg-gray-50 dark:hover:bg-slate-900'
-                    }`}
-                  aria-label={`Go to page ${page}`}
-                  aria-current={page === currentPage ? "page" : undefined}
-                >
-                  {page}
-                </PaginationLink>
-              </PaginationItem>
-            ))}
+      {pages.map((page) => (
+        <PaginationItem key={page}>
+          <PaginationLink
+            href={`${path}${page}`}
+            className={`px-3 py-2 text-sm rounded hover:no-underline transition-colors
+              ${
+                page === currentPage
+                  ? 'bg-primary text-black font-semibold border border-gray-300 dark:border-white'
+                  : 'text-black dark:text-white bg-white dark:bg-black border border-gray-300 dark:border-white hover:bg-gray-50 dark:hover:bg-gray-800'
+              }`}
+            aria-label={`Go to page ${page}`}
+            aria-current={page === currentPage ? 'page' : undefined}
+          >
+            {page}
+          </PaginationLink>
+        </PaginationItem>
+      ))}
 
-            {hasNextDots && (
-              <PaginationItem>
-                <PaginationEllipsis />
-              </PaginationItem>
-            )}
-          </div>
+      {hasNextDots && (
+        <PaginationItem>
+          <PaginationEllipsis />
+        </PaginationItem>
+      )}
+    </div>
 
-          <PaginationItem className="ml-4">
-            <PaginationLink
-              href={`${path}${currentPage + 1}`}
-              className={`flex items-center gap-1 px-3 py-2 text-sm rounded hover:no-underline transition-colors
-                ${hasNextPage
-                  ? 'text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700'
-                  : 'text-gray-400 dark:text-gray-600 bg-gray-100 dark:bg-gray-800 cursor-not-allowed'}`}
-              aria-label="Go to next page"
-              aria-disabled={!hasNextPage}
-              tabIndex={!hasNextPage ? -1 : undefined}
-              onClick={(e) => !hasNextPage && e.preventDefault()}
-            >
-              
-              <ChevronRight className="w-4 h-4 dark:text-slate-100" />
-            </PaginationLink>
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
+    {/* Next Button */}
+    <PaginationItem className="ml-4">
+      <PaginationLink
+        href={`${path}${currentPage + 1}`}
+        className={`flex items-center gap-1 px-3 py-2 text-sm rounded hover:no-underline transition-colors
+          ${
+            hasNextPage
+              ? 'text-black dark:text-white bg-white dark:bg-black border border-gray-300 dark:border-white hover:bg-gray-50 dark:hover:bg-gray-800'
+              : 'text-gray-400 dark:text-gray-600 bg-gray-100 dark:bg-black border-gray-300 dark:border-gray-700 cursor-not-allowed'
+          }`}
+        aria-label="Go to next page"
+        aria-disabled={!hasNextPage}
+        tabIndex={!hasNextPage ? -1 : undefined}
+        onClick={(e) => !hasNextPage && e.preventDefault()}
+      >
+        <ChevronRight className="w-4 h-4" />
+      </PaginationLink>
+    </PaginationItem>
+  </PaginationContent>
+</Pagination>
+
     </>
   );
 }

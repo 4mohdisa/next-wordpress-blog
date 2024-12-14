@@ -1,29 +1,34 @@
-import Link from 'next/link';
-import { Helmet } from 'react-helmet';
-
-import { getPostBySlug, getRecentPosts, getRelatedPosts, postPathBySlug } from '../../lib/posts';
+import { getPostBySlug, getRecentPosts, getAllPosts } from '../../lib/posts';
+import { WebpageJsonLd, ArticleJsonLd } from '../../lib/json-ld';
 import { categoryPathBySlug } from '../../lib/categories';
 import { formatDate } from '../../lib/datetime';
-import { ArticleJsonLd } from '../../lib/json-ld';
-import { helmetSettingsFromMetadata } from '../../lib/site';
+import styles from '../../styles/pages/Post.module.scss';
 import useSite from '../../hooks/use-site';
-import usePageMetadata from '../../hooks/use-page-metadata';
-
+import { useRouter } from 'next/router';
 import Layout from '../../components/Layout';
 import Header from '../../components/Header';
 import Section from '../../components/Section';
 import Container from '../../components/Container';
 import Content from '../../components/Content';
 import Metadata from '../../components/Metadata';
-import FeaturedImage from '../../components/FeaturedImage';
+import Link from 'next/link';
+import dynamic from 'next/dynamic';
+import Head from 'next/head';
+import React from 'react';
+import Helmet from 'react-helmet';
 
-import styles from '../../styles/pages/Post.module.scss';
+const ThemeProvider = dynamic(() => import('next-themes').then(mod => mod.ThemeProvider), {
+  ssr: false
+});
 
-export default function Post({ post, socialImage, related }) {
+export default function Post({ post, socialImage = null, related = [] }) {
+  const { metadata: siteMetadata = {} } = useSite();
+  const { homepage } = useSite();
+  const router = useRouter();
+  const { asPath } = router;
+
   const {
     title,
-    metaTitle,
-    description,
     content,
     date,
     author,
@@ -33,7 +38,9 @@ export default function Post({ post, socialImage, related }) {
     isSticky = false,
   } = post;
 
-  const { metadata: siteMetadata = {}, homepage } = useSite();
+  const metadataOptions = {
+    compactCategories: false,
+  };
 
   if (!post.og) {
     post.og = {};
@@ -44,156 +51,184 @@ export default function Post({ post, socialImage, related }) {
   post.og.imageWidth = 2000;
   post.og.imageHeight = 1000;
 
-  const { metadata } = usePageMetadata({
-    metadata: {
-      ...post,
-      title: metaTitle,
-      description: description || post.og?.description || `Read more about ${title}`,
-    },
-  });
-
-  if (process.env.WORDPRESS_PLUGIN_SEO !== true) {
-    metadata.title = `${title} - ${siteMetadata.title}`;
-    metadata.og.title = metadata.title;
-    metadata.twitter.title = metadata.title;
-  }
-
-  const metadataOptions = {
-    compactCategories: false,
+  const helmetSettings = {
+    defaultTitle: siteMetadata.title,
+    titleTemplate: process.env.WORDPRESS_PLUGIN_SEO === 'true' ? '%s' : `%s - ${siteMetadata.title}`,
   };
 
-  const { posts: relatedPostsList, title: relatedPostsTitle } = related || {};
+  const metaTitle = post.metadata?.title || title;
+  const metaDescription = post.metadata?.description || '';
 
-  const helmetSettings = helmetSettingsFromMetadata(metadata);
+  const socialImageUrl = socialImage && process.env.NEXT_PUBLIC_SITE_URL 
+    ? `${process.env.NEXT_PUBLIC_SITE_URL}${socialImage}`
+    : null;
+
+  const metaOptions = {
+    title: `${metaTitle} - ${siteMetadata.title}`,
+    description: metaDescription,
+    canonicalPath: asPath,
+    imageUrl: socialImageUrl,
+  };
+
+  const jsonLdOptions = {
+    ...post,
+    siteTitle: siteMetadata.title,
+    canonicalPath: asPath,
+  };
+
+  if (!post) {
+    return (
+      <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem>
+        <Layout>
+          <Container>
+            <h1>Post not found</h1>
+            <p>The requested post could not be found.</p>
+          </Container>
+        </Layout>
+      </ThemeProvider>
+    );
+  }
 
   return (
-    <Layout>
-      <Helmet {...helmetSettings} />
-
-      <ArticleJsonLd post={post} siteTitle={siteMetadata.title} />
-
-      <Header>
-        {featuredImage && (
-          <FeaturedImage
-            {...featuredImage}
-            src={featuredImage.sourceUrl}
-            dangerouslySetInnerHTML={featuredImage.caption}
-          />
-        )}
-        <p className={`${styles.postModified}`}>Last updated on {formatDate(modified)}.</p>
-
-        <h1
-          className={`${styles.postTitle}`}
-          dangerouslySetInnerHTML={{
-            __html: title,
-          }}
-        />
-        <Metadata
-          className={`${styles.postMetadata}`}
-          date={date}
-          author={author}
-          categories={categories}
-          options={metadataOptions}
-          isSticky={isSticky}
-        />
-      </Header>
-
-      <Content>
-        <Section>
-          <Container>
-            <div
-              className={`${styles.postContent}`}
-              dangerouslySetInnerHTML={{
-                __html: content,
-              }}
-            />
-          </Container>
-        </Section>
-      </Content>
-
-      <Section className={`text-center`}>
+    <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem>
+      <Layout>
+        <Helmet {...helmetSettings}>
+          <title>{title}</title>
+          {socialImage ? <meta property="og:image" content={socialImage} /> : null}
+        </Helmet>
+        <WebpageJsonLd {...metaOptions} />
+        <ArticleJsonLd {...jsonLdOptions} />
         <Container>
-          {Array.isArray(relatedPostsList) && relatedPostsList.length > 0 && (
-            <div className={`flex flex-col`}>
-              {relatedPostsTitle.name ? (
-                <span className='text-[1.2em] mb-[0.4em]'>
-                  More from <Link href={relatedPostsTitle.link}>{relatedPostsTitle.name}</Link>
-                </span>
-              ) : (
-                <span>More Posts</span>
+          <article className={styles.post}>
+            <Header>
+              {featuredImage && (
+                <img
+                  src={featuredImage.sourceUrl}
+                  alt={featuredImage.altText}
+                />
               )}
-              <ul className='list-none' >
-                {relatedPostsList.map((post) => (
-                  <li key={post.title}>
-                    <Link href={postPathBySlug(post.slug)}>{post.title}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+              <p className={styles.postModified}>
+                Last updated on {formatDate(modified)}
+              </p>
+              <h1 
+                className={styles.postTitle}
+                dangerouslySetInnerHTML={{
+                  __html: title,
+                }}
+              />
+              <Metadata
+                className={styles.postMetadata}
+                date={date}
+                author={author}
+                categories={categories}
+                options={metadataOptions}
+                isSticky={isSticky}
+              />
+            </Header>
+
+            <Content>
+              <div
+                className={styles.postContent}
+                dangerouslySetInnerHTML={{
+                  __html: content,
+                }}
+              />
+            </Content>
+
+            <Section className={styles.postFooter}>
+              {Array.isArray(related) && related.length > 0 && (
+                <div className={styles.relatedPosts}>
+                  <span>Related Posts</span>
+                  <ul>
+                    {related.map((post) => (
+                      <li key={post.id}>
+                        <Link href={`/posts/${post.slug}`}>
+                          <a>{post.title}</a>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </Section>
+          </article>
         </Container>
-      </Section>
-    </Layout>
+      </Layout>
+    </ThemeProvider>
   );
 }
 
 export async function getStaticProps({ params = {} } = {}) {
-  const { post } = await getPostBySlug(params?.slug);
+  try {
+    const { post, socialImage = null } = await getPostBySlug(params?.slug);
 
-  if (!post) {
+    if (!post) {
+      return {
+        notFound: true,
+      };
+    }
+
+    // Generate social image if needed
+    const postSocialImage = socialImage || post?.featuredImage?.sourceUrl || null;
+
     return {
-      props: {},
+      props: {
+        post,
+        socialImage: postSocialImage,
+        related: post.related || [],
+      },
+      revalidate: 60 * 60, // Revalidate every hour
+    };
+  } catch (e) {
+    console.error(`[getStaticProps] Error fetching post: ${e.message}`);
+    return {
       notFound: true,
     };
   }
-
-  const { categories, databaseId: postId } = post;
-
-  const props = {
-    post,
-    socialImage: `${process.env.OG_IMAGE_DIRECTORY}/${params?.slug}.png`,
-  };
-
-  const { category: relatedCategory, posts: relatedPosts } = (await getRelatedPosts(categories, postId)) || {};
-  const hasRelated = relatedCategory && Array.isArray(relatedPosts) && relatedPosts.length;
-
-  if (hasRelated) {
-    props.related = {
-      posts: relatedPosts,
-      title: {
-        name: relatedCategory.name || null,
-        link: categoryPathBySlug(relatedCategory.slug),
-      },
-    };
-  }
-
-  return {
-    props,
-  };
 }
 
 export async function getStaticPaths() {
-  // Only render the most recent posts to avoid spending unecessary time
-  // querying every single post from WordPress
+  try {
+    // First try to get the count from environment variable
+    const count = parseInt(process.env.POSTS_PRERENDER_COUNT, 10) || 5;
 
-  // Tip: this can be customized to use data or analytitcs to determine the
-  // most popular posts and render those instead
+    // Try to get recent posts first
+    let posts = [];
+    try {
+      const recentPosts = await getRecentPosts({
+        count,
+        queryIncludes: 'index',
+      });
+      posts = recentPosts.posts || [];
+    } catch (e) {
+      console.warn('[getStaticPaths] Failed to get recent posts, falling back to getAllPosts');
+      // Fallback to getting all posts if getRecentPosts fails
+      const allPosts = await getAllPosts({
+        queryIncludes: 'index',
+      });
+      posts = (allPosts.posts || []).slice(0, count);
+    }
 
-  const { posts } = await getRecentPosts({
-    count: process.env.POSTS_PRERENDER_COUNT, // Update this value in next.config.js!
-    queryIncludes: 'index',
-  });
+    // Filter out posts without slugs and create paths
+    const paths = posts
+      .filter(post => post && typeof post.slug === 'string')
+      .map(post => ({
+        params: {
+          slug: post.slug,
+        },
+      }));
 
-  const paths = posts
-    .filter(({ slug }) => typeof slug === 'string')
-    .map(({ slug }) => ({
-      params: {
-        slug,
-      },
-    }));
-
-  return {
-    paths,
-    fallback: 'blocking',
-  };
+    return {
+      paths,
+      // Use blocking fallback to ensure SEO for posts not pre-rendered
+      fallback: 'blocking',
+    };
+  } catch (e) {
+    console.error(`[getStaticPaths] Error generating paths: ${e.message}`);
+    // Return minimal paths array with fallback true to prevent build failure
+    return {
+      paths: [],
+      fallback: 'blocking',
+    };
+  }
 }

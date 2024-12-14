@@ -10,8 +10,10 @@ export function ArticleJsonLd({ post = {}, siteTitle = '' }) {
   const { homepage = '', faviconPath = '/favicon.ico' } = config;
   const { title, slug, excerpt, date, author, categories, modified, featuredImage } = post;
   const path = postPathBySlug(slug);
-  const datePublished = !!date && new Date(date);
-  const dateModified = !!modified && new Date(modified);
+
+  // Ensure we have valid Date objects
+  const datePublished = date ? new Date(date) : null;
+  const dateModified = modified ? new Date(modified) : datePublished;
 
   /** TODO - As image is a recommended field would be interesting to have a
    * default image in case there is no featuredImage comming from WP,
@@ -26,15 +28,15 @@ export function ArticleJsonLd({ post = {}, siteTitle = '' }) {
       '@id': `${homepage}${path}`,
     },
     headline: title,
-    image: [featuredImage?.sourceUrl],
+    image: featuredImage?.sourceUrl ? [featuredImage.sourceUrl] : [],
     datePublished: datePublished ? datePublished.toISOString() : '',
-    dateModified: dateModified ? dateModified.toISOString() : datePublished.toISOString(),
-    description: excerpt,
-    keywords: [categories.map(({ name }) => `${name}`).join(', ')],
-    copyrightYear: datePublished ? datePublished.getFullYear() : '',
+    dateModified: dateModified ? dateModified.toISOString() : '',
+    description: excerpt || '',
+    keywords: categories?.length ? [categories.map(({ name }) => name).join(', ')] : [],
+    copyrightYear: datePublished ? datePublished.getFullYear() : new Date().getFullYear(),
     author: {
       '@type': 'Person',
-      name: author?.name,
+      name: author?.name || '',
     },
     publisher: {
       '@type': 'Organization',
@@ -64,7 +66,7 @@ export function WebsiteJsonLd({ siteTitle = '' }) {
     copyrightYear: new Date().getFullYear(),
     potentialAction: {
       '@type': 'SearchAction',
-      target: `${homepage}/search/?q={search_term_string}`,
+      target: `${homepage}/search?q={search_term_string}`,
       'query-input': 'required name=search_term_string',
     },
   };
@@ -76,18 +78,18 @@ export function WebsiteJsonLd({ siteTitle = '' }) {
   );
 }
 
-export function WebpageJsonLd({ title = '', description = '', siteTitle = '', slug = '' }) {
+export function WebpageJsonLd({ title = '', description = '', siteTitle = '', canonicalPath = '' }) {
   const { homepage = '' } = config;
-  const path = pagePathBySlug(slug);
+  const path = canonicalPath || '/';
 
   const jsonLd = {
-    '@context': 'http://schema.org',
+    '@context': 'https://schema.org',
     '@type': 'WebPage',
     name: title,
     description: description,
     url: `${homepage}${path}`,
     publisher: {
-      '@type': 'ProfilePage',
+      '@type': 'Organization',
       name: siteTitle,
     },
   };
@@ -126,7 +128,7 @@ export function LogoJsonLd() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    url: `${homepage}`,
+    url: homepage,
     logo: `${homepage}${faviconPath}`,
   };
 

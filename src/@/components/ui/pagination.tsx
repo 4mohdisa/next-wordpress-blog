@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react"
 
@@ -52,6 +54,9 @@ const PaginationLink = ({
         variant: isActive ? "outline" : "ghost",
         size,
       }),
+      "text-black dark:text-white",
+      isActive && "bg-white dark:bg-black border border-black dark:border-white",
+      !isActive && "hover:bg-gray-100 dark:hover:bg-gray-900",
       className
     )}
     {...props}
@@ -66,7 +71,10 @@ const PaginationPrevious = ({
   <PaginationLink
     aria-label="Go to previous page"
     size="default"
-    className={cn("gap-1 pl-2.5", className)}
+    className={cn(
+      "gap-1 pl-2.5 bg-transparent dark:bg-white text-black dark:text-black border border-black dark:border-white hover:bg-gray-100 dark:hover:bg-gray-100 transition-colors",
+      className
+    )}
     {...props}
   >
     <ChevronLeft className="h-4 w-4" />
@@ -82,7 +90,10 @@ const PaginationNext = ({
   <PaginationLink
     aria-label="Go to next page"
     size="default"
-    className={cn("gap-1 pr-2.5", className)}
+    className={cn(
+      "gap-1 pr-2.5 bg-transparent dark:bg-white text-black dark:text-black border border-black dark:border-white hover:bg-gray-100 dark:hover:bg-gray-100 transition-colors",
+      className
+    )}
     {...props}
   >
     <span>Next</span>
@@ -97,7 +108,7 @@ const PaginationEllipsis = ({
 }: React.ComponentProps<"span">) => (
   <span
     aria-hidden
-    className={cn("flex h-9 w-9 items-center justify-center", className)}
+    className={cn("flex h-9 w-9 items-center justify-center text-black dark:text-white", className)}
     {...props}
   >
     <MoreHorizontal className="h-4 w-4" />

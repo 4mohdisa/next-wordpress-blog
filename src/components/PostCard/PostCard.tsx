@@ -50,21 +50,27 @@ export function PostCard({ post, options = {} }: PostCardProps) {
   }
 
   return (
-    <Card className={`relative transition-all hover:border-primary ${isSticky ? 'border-primary rounded-xl' : ''}`}>
+    <Card className={`relative transition-all bg-white dark:bg-black hover:border-link-default dark:hover:border-link-hover ${isSticky ? 'border-link-default dark:border-link-hover rounded-xl' : 'border-border-default'}`}>
       <CardHeader className="relative p-4 sm:p-6">
         {isSticky && (
-          <MapPin className="absolute right-2 top-2 h-4 w-4 text-muted-foreground" aria-label="Sticky Post" />
+          <MapPin className="absolute right-2 top-2 h-4 w-4 text-black dark:text-white opacity-60" aria-label="Sticky Post" />
         )}
         <Link href={postPathBySlug(slug)} className="no-underline">
-          <CardTitle className="text-lg sm:text-xl md:text-2xl hover:text-primary hover:underline transition-colors" dangerouslySetInnerHTML={{ __html: title }} />
+          <CardTitle 
+            className="text-lg sm:text-xl md:text-2xl text-black dark:text-white hover:text-link-default dark:hover:text-link-hover transition-colors" 
+            dangerouslySetInnerHTML={{ __html: title }} 
+          />
         </Link>
       </CardHeader>
       <CardContent className="px-4 pb-4 sm:px-6 sm:pb-6">
         <Metadata className="mb-4" {...metadata} />
         {excerpt && (
-          <div className="text-sm sm:text-base text-muted-foreground" dangerouslySetInnerHTML={{
-            __html: truncateExcerpt(sanitizeExcerpt(excerpt), 150)
-          }} />
+          <div 
+            className="text-sm sm:text-base text-black dark:text-white opacity-80" 
+            dangerouslySetInnerHTML={{
+              __html: truncateExcerpt(sanitizeExcerpt(excerpt), 150)
+            }} 
+          />
         )}
       </CardContent>
     </Card>

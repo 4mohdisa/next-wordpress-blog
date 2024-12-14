@@ -20,14 +20,14 @@ export default function Home({ posts, pagination }) {
       <WebsiteJsonLd siteTitle={title} />
       <Header>
         <h1
-          className={styles.title}
+          className={"text-center leading-[1.15] text-5xl text-center m-0 text-black dark:text-white font-bold"}
           dangerouslySetInnerHTML={{
             __html: title,
           }}
         />
 
         <p
-          className={styles.description}
+          className={"text-center text-lg text-black dark:text-white"}
           dangerouslySetInnerHTML={{
             __html: description,
           }}
@@ -37,15 +37,13 @@ export default function Home({ posts, pagination }) {
       <Section>
         <Container>
           <h2 className="sr-only">Posts</h2>
-          <ul className={styles.posts}>
-            {posts.map((post) => {
-              return (
-                <li key={post.slug}>
-                  <PostCard post={post} />
-                </li>
-              );
-            })}
-          </ul>
+          <div className={styles.posts}>
+            {posts.map((post) => (
+              <div key={post.slug} className={"mb-8"}>
+                <PostCard post={post} />
+              </div>
+            ))}
+          </div>
           {pagination && (
             <Pagination
               addCanonical={false}

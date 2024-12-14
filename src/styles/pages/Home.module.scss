@@ -1,16 +1,28 @@
 // @import "styles/settings/__settings";
 
-.title {
-  @apply text-center text-[2.5rem] mb-6;
-}
-.description {
-  @apply text-center leading-normal text-2xl;
-}
-.posts {
-  @apply mt-[-1rem] mb-[-1rem] mx-0 pl-0;
-  list-style: none;
-}
-.posts > li {
-  @apply mx-0 my-[4em] first:mt-0 last:mb-0;
+.homeTitle {
+  @apply text-center font-black mb-12;
+  font-size: 3.25rem; // 30% larger than default
+  color: #000000;
+  font-weight: 900;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  
+  [data-theme='dark'] & {
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  }
 }
 
+.homePosts {
+  @apply grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
+  gap: 1.5rem;
+}
+
+.homePost {
+  @apply flex flex-col bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md transition-transform duration-200;
+  margin: 10px 0;
+  
+  &:hover {
+    transform: translateY(-2px);
+  }
+}

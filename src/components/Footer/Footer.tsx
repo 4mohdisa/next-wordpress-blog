@@ -30,75 +30,90 @@ const Footer: React.FC = () => {
   const hasMenu = hasRecentPosts || hasRecentCategories;
 
   return (
-    <footer className={"bg-gray-100 text-gray-800 border-t border-gray-300 dark:bg-slate-900 dark:text-gray-200 dark:border-gray-700"}>
-      {hasMenu && (
-        <Section className="mx-0 my-8">
-          <Container>
-            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-screen-xl mx-auto px-4 p-0 list-none">
-              {hasRecentPosts && (
-                <li>
-                  <Link href="/posts/" className={"font-semibold tracking-wide text-4xl sm:text-3xl md:text-2xl lg:text-xl text-slate-800 dark:text-white"}>
-                    Recent Posts
-                  </Link>
-                  <ul className="mt-4">
-                    {recentPosts.map((post: Post) => {
-                      const { id, slug, title } = post;
-                      return (
-                        <li key={id} className='mb-4 basis-full md:basis-1/2 lg:basis-1/3'>
-                          <Link href={postPathBySlug(slug)} className='text-slate-800 dark:text-slate-300 block text-3xl sm:text-2xl md:text-xl lg:text-base hover:text-blue-500 hover:underline no-underline whitespace-nowrap overflow-hidden text-ellipsis transition-colors last:mb-0'>
-                            {title}
-                          </Link>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </li>
-              )}
-              {hasRecentCategories && (
-                <li>
-                  <Link href="/categories/" className={"font-semibold tracking-wide text-4xl sm:text-3xl md:text-2xl lg:text-xl text-gray-800 dark:text-white"}>
-                    Categories
-                  </Link>
-                  <ul className="mt-4">
-                    {categories.map((category: Category) => {
-                      const { id, slug, name } = category;
-                      return (
-                        <li key={id} className='mb-4 basis-full md:basis-1/2 lg:basis-1/3'>
-                          <Link href={categoryPathBySlug(slug)} className='text-slate-800 dark:text-slate-300'>
-                            {name}
-                          </Link>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </li>
-              )}
+    <footer className="bg-white dark:bg-black border-t border-border-default">
+    {hasMenu && (
+      <div className="mx-0 my-8">
+        <div className="max-w-screen-xl mx-auto px-4">
+          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 lg:gap-10 list-none">
+            {hasRecentPosts && (
               <li>
-                <h2 className={"font-semibold tracking-wide text-4xl sm:text-3xl md:text-2xl lg:text-xl text-gray-800 dark:text-white"}>
-                  More
-                </h2>
-                <ul className="mt-4">
-                  <li className='mb-4 basis-full md:basis-1/2 lg:basis-1/3'>
-                    <a href="/feed.xml" className='text-slate-800 dark:text-slate-300'>RSS</a>
-                  </li>
-                  <li className='mb-4 basis-full md:basis-1/2 lg:basis-1/3'>
-                    <a href="/sitemap.xml" className='text-slate-800 dark:text-slate-300'>Sitemap</a>
-                  </li>
+                <Link
+                  href="/posts/"
+                  className="font-bold tracking-wide text-lg md:text-xl text-black dark:text-white block mb-4 hover:text-link-default dark:hover:text-link-hover"
+                >
+                  Recent Posts
+                </Link>
+                <ul>
+                  {recentPosts.map((post: Post) => (
+                    <li key={post.id} className="mb-2">
+                      <Link
+                        href={postPathBySlug(post.slug)}
+                        className="text-sm md:text-base text-black dark:text-white hover:text-link-default dark:hover:text-link-hover transition-colors"
+                      >
+                        {post.title}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </li>
-            </ul>
-          </Container>
-        </Section>
-      )}
-
-      <Section className='text-center text-3xl sm:text-2xl md:text-xl lg:text-base text-gray-500 bg-gray-200 py-4 mt-8 dark:text-gray-400 dark:bg-gray-950 mb-0!'>
-        <Container>
-          <p className='m-0'>
-            &copy; {new Date().getFullYear()} {title}
-          </p>
-        </Container>
-      </Section>
-    </footer>
+            )}
+            {hasRecentCategories && (
+              <li>
+                <Link
+                  href="/categories/"
+                  className="font-bold tracking-wide text-lg md:text-xl text-black dark:text-white block mb-4 hover:text-link-default dark:hover:text-link-hover"
+                >
+                  Categories
+                </Link>
+                <ul>
+                  {categories.map((category: Category) => (
+                    <li key={category.id} className="mb-2">
+                      <Link
+                        href={categoryPathBySlug(category.slug)}
+                        className="text-sm md:text-base text-black dark:text-white hover:text-link-default dark:hover:text-link-hover transition-colors"
+                      >
+                        {category.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            )}
+            <li>
+              <h2 className="font-bold tracking-wide text-lg md:text-xl text-black dark:text-white mb-4">
+                More
+              </h2>
+              <ul>
+                <li className="mb-2">
+                  <a
+                    href="/feed.xml"
+                    className="text-sm md:text-base text-black dark:text-white hover:text-link-default dark:hover:text-link-hover transition-colors"
+                  >
+                    RSS
+                  </a>
+                </li>
+                <li className="mb-2">
+                  <a
+                    href="/sitemap.xml"
+                    className="text-sm md:text-base text-black dark:text-white hover:text-link-default dark:hover:text-link-hover transition-colors"
+                  >
+                    Sitemap
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    )}
+  
+    {/* Copyright Section */}
+    <div className="text-center text-sm md:text-base py-4 bg-white dark:bg-black text-black dark:text-white border-t border-border-default">
+      <p className="m-0">
+        &copy; {new Date().getFullYear()} {title}
+      </p>
+    </div>
+  </footer>
   );
 };
 

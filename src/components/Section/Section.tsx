@@ -1,23 +1,20 @@
 import React, { ReactNode } from 'react';
-// import ClassName from '../../models/className';
+import ClassName from '../../models/classname.js';
 import styles from './Section.module.scss';
-import ClassName from '../../models/Classname';
 
-interface SectionProps extends React.HTMLAttributes<HTMLElement> {
+interface SectionProps {
   children: ReactNode;
-  className?: string;
+  className?: string | string[];
 }
 
-const Section: React.FC<SectionProps> = ({ children, className, ...rest }) => {
+const Section: React.FC<SectionProps> = ({ children, className }) => {
   const sectionClassName = new ClassName(styles.section);
 
-  sectionClassName.addIf(className, className);
+  if (className) {
+    sectionClassName.add(className);
+  }
 
-  return (
-    <section className={sectionClassName.toString()} {...rest}>
-      {children}
-    </section>
-  );
+  return <section className={sectionClassName.toString()}>{children}</section>;
 };
 
 export default Section;

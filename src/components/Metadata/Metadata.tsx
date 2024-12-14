@@ -48,23 +48,28 @@ export function Metadata({
   const { compactCategories } = options
 
   return (
-    <ul className={`flex flex-wrap items-center gap-4 mt-5 text-sm text-muted-foreground ${className}`}>
+    <ul className={`flex flex-wrap items-center gap-4 mt-5 text-black dark:text-white text-xs sm:text-sm md:text-base ${className}`}>
       {author && (
         <li className="flex items-center gap-2">
-          <Avatar className="h-6 w-6">
+          <Avatar className="h-5 w-5 sm:h-6 sm:w-6">
             {author.avatar && (
               <AvatarImage src={author.avatar.url} alt={`${author.name}'s avatar`} />
             )}
-            <AvatarFallback>{author.name.charAt(0)}</AvatarFallback>
+            <AvatarFallback className="bg-gray-200 dark:bg-gray-800 text-black dark:text-white">
+              {author.name.charAt(0)}
+            </AvatarFallback>
           </Avatar>
-          <Link href={authorPathByName(author.name)} className="hover:text-primary hover:underline">
+          <Link 
+            href={authorPathByName(author.name)} 
+            className="text-black dark:text-white hover:text-primary dark:hover:text-primary transition-colors duration-200"
+          >
             {author.name}
           </Link>
         </li>
       )}
       {date && (
         <li>
-          <time dateTime={date} className="text-xs">
+          <time dateTime={date} className="text-gray-600 dark:text-gray-300 text-xs sm:text-sm">
             {formatDate(date)}
           </time>
         </li>
@@ -72,8 +77,15 @@ export function Metadata({
       {Array.isArray(categories) && categories.length > 0 && (
         <li>
           {compactCategories ? (
-            <Badge variant="secondary" title={categories.map(({ name }) => name).join(", ")}>
-              <Link href={categoryPathBySlug(categories[0].slug)} className="hover:text-primary">
+            <Badge 
+              variant="secondary" 
+              className="bg-gray-100 dark:bg-gray-800 text-black dark:text-white border border-gray-200 dark:border-gray-700"
+              title={categories.map(({ name }) => name).join(", ")}
+            >
+              <Link 
+                href={categoryPathBySlug(categories[0].slug)} 
+                className="text-black dark:text-white hover:text-primary dark:hover:text-primary transition-colors duration-200"
+              >
                 {categories[0].name}
               </Link>
               {categories.length > 1 && " +"}
@@ -82,8 +94,14 @@ export function Metadata({
             <ul className="flex flex-wrap gap-2">
               {categories.map((category) => (
                 <li key={category.slug}>
-                  <Badge variant="secondary">
-                    <Link href={categoryPathBySlug(category.slug)} className="hover:text-primary">
+                  <Badge 
+                    variant="secondary"
+                    className="bg-gray-100 dark:bg-gray-800 text-black dark:text-white border border-gray-200 dark:border-gray-700"
+                  >
+                    <Link 
+                      href={categoryPathBySlug(category.slug)} 
+                      className="text-black dark:text-white hover:text-primary dark:hover:text-primary transition-colors duration-200"
+                    >
                       {category.name}
                     </Link>
                   </Badge>

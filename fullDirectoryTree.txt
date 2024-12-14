@@ -1,0 +1,143 @@
+next-wordpress-starter-main
+ ├── .env.local
+ ├── .eslintignore
+ ├── .eslintrc.js
+ ├── .git
+ │   ├── COMMIT_EDITMSG
+ │   ├── FETCH_HEAD
+ │   ├── HEAD
+ │   ├── ORIG_HEAD
+ │   ├── config
+ │   ├── description
+ │   ├── hooks
+ │   ├── index
+ │   ├── info
+ │   ├── logs
+ │   ├── objects
+ │   └── refs
+ ├── .github
+ │   ├── ISSUE_TEMPLATE
+ │   ├── pull_request_template.md
+ │   └── workflows
+ ├── .gitignore
+ ├── .husky
+ │   └── pre-commit
+ ├── .next
+ │   ├── build-manifest.json
+ │   ├── cache
+ │   ├── package.json
+ │   ├── react-loadable-manifest.json
+ │   ├── server
+ │   ├── static
+ │   └── trace
+ ├── .nvmrc
+ ├── .prettierignore
+ ├── .prettierrc.js
+ ├── CONTRIBUTING.md
+ ├── README.md
+ ├── components.json
+ ├── directoryTree.txt
+ ├── generateTree.js
+ ├── jsconfig.json
+ ├── netlify.toml
+ ├── next-env.d.ts
+ ├── next.config.js
+ ├── package-lock.json
+ ├── package.json
+ ├── plugins
+ │   ├── feed.js
+ │   ├── plugin-compiler.js
+ │   ├── search-index.js
+ │   ├── sitemap.js
+ │   ├── socialImages.js
+ │   ├── socialImages.template.html
+ │   └── util.js
+ ├── postcss.config.js
+ ├── public
+ │   ├── android-chrome-192x192.png
+ │   ├── android-chrome-512x512.png
+ │   ├── apple-touch-icon.png
+ │   ├── favicon-1024x1024.png
+ │   ├── favicon-16x16.png
+ │   ├── favicon-32x32.png
+ │   ├── favicon.ico
+ │   ├── feed.xml
+ │   ├── robots.txt
+ │   ├── site.webmanifest
+ │   ├── sitemap.jpg
+ │   ├── sitemap.xml
+ │   └── wp-search.json
+ ├── src
+ │   ├── @
+ │   │   ├── components
+ │   │   │   └── ui
+ │   │   └── lib
+ │   ├── components
+ │   │   ├── Breadcrumbs
+ │   │   ├── Button
+ │   │   ├── Container
+ │   │   ├── Content
+ │   │   ├── FeaturedImage
+ │   │   ├── Footer
+ │   │   ├── Header
+ │   │   ├── Image
+ │   │   ├── Layout
+ │   │   ├── Main
+ │   │   ├── Metadata
+ │   │   ├── Nav
+ │   │   ├── NavListItem
+ │   │   ├── Pagination
+ │   │   ├── PostCard
+ │   │   ├── Section
+ │   │   ├── SectionTitle
+ │   │   ├── Title
+ │   │   └── ui
+ │   ├── data
+ │   │   ├── categories.js
+ │   │   ├── menus.js
+ │   │   ├── pages.js
+ │   │   ├── posts.js
+ │   │   ├── site.js
+ │   │   └── users.js
+ │   ├── hooks
+ │   │   ├── use-page-metadata.js
+ │   │   ├── use-search.js
+ │   │   └── use-site.js
+ │   ├── lib
+ │   │   ├── apollo-client.js
+ │   │   ├── categories.js
+ │   │   ├── datetime.js
+ │   │   ├── json-ld.js
+ │   │   ├── menus.js
+ │   │   ├── pages.js
+ │   │   ├── posts.js
+ │   │   ├── search.js
+ │   │   ├── site.js
+ │   │   ├── users.js
+ │   │   └── util.js
+ │   ├── models
+ │   │   └── classname.js
+ │   ├── pages
+ │   │   ├── 404.js
+ │   │   ├── 500.js
+ │   │   ├── [slugParent]
+ │   │   ├── _app.js
+ │   │   ├── _document.js
+ │   │   ├── authors
+ │   │   ├── categories
+ │   │   ├── categories.js
+ │   │   ├── index.js
+ │   │   ├── posts
+ │   │   ├── posts.js
+ │   │   └── search.js
+ │   ├── styles
+ │   │   ├── components
+ │   │   ├── global.css
+ │   │   ├── globals.scss
+ │   │   ├── pages
+ │   │   ├── settings
+ │   │   └── templates
+ │   └── templates
+ │       └── archive.js
+ ├── tailwind.config.js
+ └── tsconfig.json

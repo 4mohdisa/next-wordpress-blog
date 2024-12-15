@@ -21,12 +21,12 @@ function App({ Component, pageProps = {}, metadata, recentPosts, categories, men
 
   return (
     <ThemeProvider attribute="class">
-    <SiteContext.Provider value={site}>
-      <SearchProvider>
-        <NextNProgress height={4} color={'#0070f3'} />
-        <Component {...pageProps} />
-      </SearchProvider>
-    </SiteContext.Provider>
+      <SiteContext.Provider value={site}>
+        <SearchProvider>
+          <NextNProgress height={4} color={'#0070f3'} />
+          <Component {...pageProps} />
+        </SearchProvider>
+      </SiteContext.Provider>
     </ThemeProvider>
   );
 }

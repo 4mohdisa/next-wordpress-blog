@@ -16,7 +16,7 @@ interface NavListItemProps {
 }
 
 const NavListItem: React.FC<NavListItemProps> = ({ className, item }) => {
-  const nestedItems = (item.children || []).map((child) => (
+  const nestedItems = (item.children || []).map(child => (
     <NavListItem key={child.id} item={child} />
   ));
 

@@ -21,7 +21,7 @@ export function authorPathBySlug(slug) {
 export async function getUserBySlug(slug) {
   const { users } = await getAllUsers();
 
-  const user = users.find((user) => user.slug === slug);
+  const user = users.find(user => user.slug === slug);
 
   return {
     user,
@@ -43,7 +43,7 @@ export function authorPathByName(name) {
 export async function getUserByNameSlug(name) {
   const { users } = await getAllUsers();
 
-  const user = users.find((user) => parameterize(user.name) === name);
+  const user = users.find(user => parameterize(user.name) === name);
 
   return {
     user,
@@ -89,15 +89,19 @@ export async function getAllUsers() {
       });
     } catch (e) {
       console.log(`[users][getAllUsers] Failed to query SEO plugin: ${e.message}`);
-      console.log('Is the SEO Plugin installed? If not, disable WORDPRESS_PLUGIN_SEO in next.config.js.');
+      console.log(
+        'Is the SEO Plugin installed? If not, disable WORDPRESS_PLUGIN_SEO in next.config.js.'
+      );
       throw e;
     }
 
-    users = users.map((user) => {
+    users = users.map(user => {
       const data = { ...user };
       const { id } = data;
 
-      const seo = seoData?.data?.users.edges.map(({ node = {} }) => node).find((node) => node.id === id)?.seo;
+      const seo = seoData?.data?.users.edges
+        .map(({ node = {} }) => node)
+        .find(node => node.id === id)?.seo;
 
       return {
         ...data,

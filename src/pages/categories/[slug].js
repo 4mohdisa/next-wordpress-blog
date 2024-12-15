@@ -11,11 +11,20 @@ export default function Category({ category, posts }) {
   const { metadata } = usePageMetadata({
     metadata: {
       ...category,
-      description: description || category.og?.description || `Read ${posts.length} posts from ${name}`,
+      description:
+        description || category.og?.description || `Read ${posts.length} posts from ${name}`,
     },
   });
 
-  return <TemplateArchive title={name} Title={<Title title={name} />} posts={posts} slug={slug} metadata={metadata} />;
+  return (
+    <TemplateArchive
+      title={name}
+      Title={<Title title={name} />}
+      posts={posts}
+      slug={slug}
+      metadata={metadata}
+    />
+  );
 }
 
 export async function getStaticProps({ params = {} } = {}) {

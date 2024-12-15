@@ -39,7 +39,12 @@ export default function TemplateArchive({
     <Layout>
       <Helmet {...helmetSettings} />
 
-      <WebpageJsonLd title={title} description={metadata.description} siteTitle={siteMetadata.title} slug={slug} />
+      <WebpageJsonLd
+        title={title}
+        description={metadata.description}
+        siteTitle={siteMetadata.title}
+        slug={slug}
+      />
 
       <Header>
         <Container>
@@ -61,7 +66,7 @@ export default function TemplateArchive({
           {Array.isArray(posts) && (
             <>
               <ul className={styles.posts}>
-                {posts.map((post) => {
+                {posts.map(post => {
                   return (
                     <li key={post.slug}>
                       <PostCard post={post} options={postOptions} />

@@ -15,7 +15,7 @@ export function decodeHtmlEntities(text) {
     '&#039;': '\u0027',
   };
 
-  return decoded.replace(/&amp;|&quot;|&#039;/g, (char) => entities[char]);
+  return decoded.replace(/&amp;|&quot;|&#039;/g, char => entities[char]);
 }
 
 /**

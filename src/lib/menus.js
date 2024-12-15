@@ -81,12 +81,14 @@ export const parseHierarchicalMenu = (
   const tree = [];
   const childrenOf = {};
 
-  data.forEach((item) => {
+  data.forEach(item => {
     const newItem = { ...item };
     const { [idKey]: id, [parentKey]: parentId = 0 } = newItem;
     childrenOf[id] = childrenOf[id] || [];
     newItem[childrenKey] = childrenOf[id];
-    parentId ? (childrenOf[parentId] = childrenOf[parentId] || []).push(newItem) : tree.push(newItem);
+    parentId
+      ? (childrenOf[parentId] = childrenOf[parentId] || []).push(newItem)
+      : tree.push(newItem);
   });
   return tree;
 };
@@ -101,7 +103,7 @@ export function findMenuByLocation(menus, location) {
   }
 
   const menu = menus.find(({ locations }) => {
-    return locations.map((loc) => loc.toUpperCase()).includes(location.toUpperCase());
+    return locations.map(loc => loc.toUpperCase()).includes(location.toUpperCase());
   });
 
   return menu && parseHierarchicalMenu(menu.menuItems);

@@ -84,7 +84,7 @@ export default function Page({ page, breadcrumbs }) {
                   <strong>{title}</strong>
                 </p>
                 <ul>
-                  {children.map((child) => {
+                  {children.map(child => {
                     return (
                       <li key={child.id}>
                         <Link href={child.uri}>{child.title}</Link>
@@ -159,7 +159,7 @@ export async function getStaticPaths() {
   const paths = pages
     .filter(({ uri }) => typeof uri === 'string' && uri !== '/')
     .map(({ uri }) => {
-      const segments = uri.split('/').filter((seg) => seg !== '');
+      const segments = uri.split('/').filter(seg => seg !== '');
 
       return {
         params: {

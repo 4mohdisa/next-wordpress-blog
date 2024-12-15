@@ -22,9 +22,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ className, breadcrumbs }) => 
   return (
     <ul className={breadcrumbsClassName.toString()}>
       {breadcrumbs.map(({ id, title, uri }) => (
-        <li key={id}>
-          {!uri ? title : <Link href={uri}>{title}</Link>}
-        </li>
+        <li key={id}>{!uri ? title : <Link href={uri}>{title}</Link>}</li>
       ))}
     </ul>
   );

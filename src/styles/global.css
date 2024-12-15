@@ -4,13 +4,13 @@
 
 :root {
   /* Base colors */
-  --background: #FFFFFF;
+  --background: #ffffff;
   --foreground: #000000;
-  
+
   /* Navigation and Footer */
-  --nav-bg: #FFFFFF;
-  --footer-bg: #FFFFFF;
-  
+  --nav-bg: #ffffff;
+  --footer-bg: #ffffff;
+
   /* Text colors */
   --text-primary: #000000;
   --text-secondary: #555555;
@@ -18,82 +18,82 @@
   --text-headline: #1a1a1a;
   --text-quote: #2a2a2a;
   --text-description: #444444;
-  
+
   /* Component backgrounds */
-  --header-footer-bg: #FFFFFF;
-  --card-bg: #FAFAFA;
-  --popover-bg: #FFFFFF;
-  --highlighted-bg: #F5F5F5;
-  --code-block-bg: #F1F1F1;
-  
+  --header-footer-bg: #ffffff;
+  --card-bg: #fafafa;
+  --popover-bg: #ffffff;
+  --highlighted-bg: #f5f5f5;
+  --code-block-bg: #f1f1f1;
+
   /* Borders */
-  --border-default: #E5E5E5;
+  --border-default: #e5e5e5;
   --border-active: #000000;
-  --input-border: #D1D1D1;
-  
+  --input-border: #d1d1d1;
+
   /* Buttons */
-  --button-primary-bg: #0070F3;
-  --button-primary-text: #FFFFFF;
-  --button-secondary-bg: #EAEAEA;
+  --button-primary-bg: #0070f3;
+  --button-primary-text: #ffffff;
+  --button-secondary-bg: #eaeaea;
   --button-secondary-text: #000000;
-  
+
   /* Links */
-  --link-default: #0070F3;
-  --link-hover: #005BB5;
-  
+  --link-default: #0070f3;
+  --link-hover: #005bb5;
+
   /* Icons */
   --icon-primary: #000000;
   --icon-secondary: #666666;
-  
+
   /* Accents */
-  --accent-1: #FFD700;
-  --accent-2: #32CD32;
-  --accent-3: #FF4500;
+  --accent-1: #ffd700;
+  --accent-2: #32cd32;
+  --accent-3: #ff4500;
 }
 
 .dark {
   /* Base colors */
   --background: #2c2c2c;
-  --foreground: #FFFFFF;
-  
+  --foreground: #ffffff;
+
   /* Navigation and Footer */
   --nav-bg: #000000;
   --footer-bg: #000000;
-  
+
   /* Text colors */
-  --text-primary: #FFFFFF;
-  --text-secondary: #CCCCCC;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
   --text-muted: #999999;
-  --text-headline: #FFFFFF;
-  --text-quote: #E0E0E0;
-  --text-description: #B0B0B0;
-  
+  --text-headline: #ffffff;
+  --text-quote: #e0e0e0;
+  --text-description: #b0b0b0;
+
   /* Component backgrounds */
   --header-footer-bg: #000000;
-  --card-bg: #1E1E1E;
-  --popover-bg: #1E1E1E;
+  --card-bg: #1e1e1e;
+  --popover-bg: #1e1e1e;
   --highlighted-bg: #333333;
-  --code-block-bg: #2D2D2D;
-  
+  --code-block-bg: #2d2d2d;
+
   /* Borders */
   --border-default: #404040;
   --border-active: #666666;
   --input-border: #444444;
-  
+
   /* Buttons */
-  --button-primary-bg: #0070F3;
-  --button-primary-text: #FFFFFF;
+  --button-primary-bg: #0070f3;
+  --button-primary-text: #ffffff;
   --button-secondary-bg: #333333;
-  --button-secondary-text: #FFFFFF;
-  
+  --button-secondary-text: #ffffff;
+
   /* Links */
-  --link-default: #3B82F6;
-  --link-hover: #60A5FA;
-  
+  --link-default: #3b82f6;
+  --link-hover: #60a5fa;
+
   /* Icons */
-  --icon-primary: #FFFFFF;
-  --icon-secondary: #CCCCCC;
-  
+  --icon-primary: #ffffff;
+  --icon-secondary: #cccccc;
+
   /* Accents remain the same for consistency */
 }
 
@@ -102,7 +102,8 @@ body {
   color: var(--text-primary);
 }
 
-header, footer {
+header,
+footer {
   background-color: var(--header-footer-bg);
   color: var(--text-primary);
 }

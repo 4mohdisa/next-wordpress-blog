@@ -61,7 +61,7 @@
     @apply w-[30em] mr-0;
   }
 }
-[data-search-is-active="true"] .navSearchResults {
+[data-search-is-active='true'] .navSearchResults {
   @apply block;
 }
 .navSearchResults p {

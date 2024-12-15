@@ -18,7 +18,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 
 const ThemeProvider = dynamic(() => import('next-themes').then(mod => mod.ThemeProvider), {
-  ssr: false
+  ssr: false,
 });
 
 export default function Post({ post, socialImage = null, related = [] }) {
@@ -53,15 +53,17 @@ export default function Post({ post, socialImage = null, related = [] }) {
 
   const helmetSettings = {
     defaultTitle: siteMetadata.title,
-    titleTemplate: process.env.WORDPRESS_PLUGIN_SEO === 'true' ? '%s' : `%s - ${siteMetadata.title}`,
+    titleTemplate:
+      process.env.WORDPRESS_PLUGIN_SEO === 'true' ? '%s' : `%s - ${siteMetadata.title}`,
   };
 
   const metaTitle = post.metadata?.title || title;
   const metaDescription = post.metadata?.description || '';
 
-  const socialImageUrl = socialImage && process.env.NEXT_PUBLIC_SITE_URL 
-    ? `${process.env.NEXT_PUBLIC_SITE_URL}${socialImage}`
-    : null;
+  const socialImageUrl =
+    socialImage && process.env.NEXT_PUBLIC_SITE_URL
+      ? `${process.env.NEXT_PUBLIC_SITE_URL}${socialImage}`
+      : null;
 
   const metaOptions = {
     title: `${metaTitle} - ${siteMetadata.title}`,
@@ -101,16 +103,9 @@ export default function Post({ post, socialImage = null, related = [] }) {
         <Container>
           <article className={styles.post}>
             <Header>
-              {featuredImage && (
-                <img
-                  src={featuredImage.sourceUrl}
-                  alt={featuredImage.altText}
-                />
-              )}
-              <p className={styles.postModified}>
-                Last updated on {formatDate(modified)}
-              </p>
-              <h1 
+              {featuredImage && <img src={featuredImage.sourceUrl} alt={featuredImage.altText} />}
+              <p className={styles.postModified}>Last updated on {formatDate(modified)}</p>
+              <h1
                 className={styles.postTitle}
                 dangerouslySetInnerHTML={{
                   __html: title,
@@ -140,7 +135,7 @@ export default function Post({ post, socialImage = null, related = [] }) {
                 <div className={styles.relatedPosts}>
                   <span>Related Posts</span>
                   <ul>
-                    {related.map((post) => (
+                    {related.map(post => (
                       <li key={post.id}>
                         <Link href={`/posts/${post.slug}`}>
                           <a>{post.title}</a>

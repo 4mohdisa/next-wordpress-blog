@@ -43,7 +43,7 @@
   ::-webkit-scrollbar-thumb {
     background: var(--scrollbar-thumb);
     border-radius: 4px;
-    
+
     &:hover {
       background: var(--text-secondary);
     }
@@ -66,19 +66,19 @@
 
   .relatedPosts {
     @apply flex flex-col space-y-4 text-center mt-8;
-    
+
     span {
       @apply block text-xl font-bold mb-4 text-gray-900 dark:text-gray-50;
       color: var(--text-primary);
     }
-    
+
     ul {
       @apply list-none space-y-2;
     }
-    
+
     li {
       @apply text-base;
-      
+
       a {
         @apply text-blue-600 dark:text-blue-400 
                hover:text-blue-800 dark:hover:text-blue-300 
@@ -94,7 +94,7 @@
   .featuredImage {
     @apply w-full overflow-hidden mb-6;
     border-radius: 1rem;
-    
+
     img {
       @apply w-full h-auto;
       border-radius: 1rem;
@@ -118,36 +118,42 @@
     line-height: 1.75;
     color: var(--text-primary);
 
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       @apply font-bold text-gray-900 dark:text-gray-50 my-6;
       font-weight: 700;
       color: var(--text-primary);
       margin: 1.5rem 0;
     }
 
-    h1 { 
+    h1 {
       @apply text-3xl;
-      font-size: 2rem; 
+      font-size: 2rem;
     }
 
-    h2 { 
+    h2 {
       @apply text-2xl;
-      font-size: 1.75rem; 
+      font-size: 1.75rem;
     }
 
-    h3 { 
+    h3 {
       @apply text-xl;
-      font-size: 1.5rem; 
+      font-size: 1.5rem;
     }
 
-    h4 { 
+    h4 {
       @apply text-lg;
-      font-size: 1.25rem; 
+      font-size: 1.25rem;
     }
 
-    h5, h6 { 
+    h5,
+    h6 {
       @apply text-base;
-      font-size: 1.125rem; 
+      font-size: 1.125rem;
     }
 
     p {
@@ -166,7 +172,7 @@
       text-decoration: underline;
       text-underline-offset: 2px;
       transition: color 0.2s ease;
-      
+
       &:hover {
         color: var(--link-hover);
       }
@@ -178,12 +184,13 @@
       color: var(--text-primary);
     }
 
-    ul, ol {
+    ul,
+    ol {
       @apply mb-6 ml-6;
-      
+
       li {
         @apply text-gray-800 dark:text-gray-200 mb-2;
-        
+
         &::before {
           @apply text-gray-500 dark:text-gray-400;
         }
@@ -328,11 +335,11 @@
       .categories {
         display: flex;
         gap: 0.5rem;
-        
+
         a {
           color: var(--link-color);
           text-decoration: none;
-          
+
           &:hover {
             text-decoration: underline;
           }
@@ -348,7 +355,8 @@
       margin-top: 2rem;
     }
 
-    img, video {
+    img,
+    video {
       width: 100%;
       height: auto;
       margin: 2rem 0;
@@ -356,7 +364,8 @@
       border: 1px solid var(--border-color);
     }
 
-    ul, ol {
+    ul,
+    ol {
       color: var(--text-secondary);
       margin: 1.5rem 0;
       padding-left: 1.5rem;
@@ -389,13 +398,27 @@
 
         // Syntax highlighting colors for dark theme
         [data-theme='dark'] & {
-          .keyword { color: #ff79c6; }
-          .function { color: #50fa7b; }
-          .string { color: #f1fa8c; }
-          .number { color: #bd93f9; }
-          .comment { color: #6272a4; }
-          .operator { color: #ff79c6; }
-          .variable { color: #f8f8f2; }
+          .keyword {
+            color: #ff79c6;
+          }
+          .function {
+            color: #50fa7b;
+          }
+          .string {
+            color: #f1fa8c;
+          }
+          .number {
+            color: #bd93f9;
+          }
+          .comment {
+            color: #6272a4;
+          }
+          .operator {
+            color: #ff79c6;
+          }
+          .variable {
+            color: #f8f8f2;
+          }
         }
       }
     }

@@ -78,7 +78,12 @@ export function WebsiteJsonLd({ siteTitle = '' }) {
   );
 }
 
-export function WebpageJsonLd({ title = '', description = '', siteTitle = '', canonicalPath = '' }) {
+export function WebpageJsonLd({
+  title = '',
+  description = '',
+  siteTitle = '',
+  canonicalPath = '',
+}) {
   const { homepage = '' } = config;
   const path = canonicalPath || '/';
 

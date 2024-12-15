@@ -23,7 +23,6 @@
   @apply font-semibold tracking-wide text-3xl sm:text-3xl md:text-2xl lg:text-2xl my-10 text-black dark:text-white;
 }
 
-
 .content video {
   @apply block mx-auto my-10 w-full;
 }
@@ -38,9 +37,8 @@
 
 .content :global(.remark-code-title) {
   @apply bg-zinc-800 text-4xl md:text-2xl lg:text-base leading-5 font-bold font-mono text-gray-200 px-5 py-8 md:py-5 lg:py-3 rounded-tl rounded-tr;
-  font-family: "Menlo", "Monaco", "Courier New", "DejaVu Sans Mono", monospace;
+  font-family: 'Menlo', 'Monaco', 'Courier New', 'DejaVu Sans Mono', monospace;
 }
-
 
 .content :global(.code-container-div > pre > code > .code-line.deleted) {
   @apply bg-red-500/20 p-0 m-0;
@@ -76,8 +74,15 @@
 
 .content :global(.code-container-div > pre > code) {
   @apply overflow-x-auto font-normal text-[0.875em] leading-[1.7142857] p-0 m-0;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    Liberation Mono, Courier New, monospace;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    Courier New,
+    monospace;
   font-feature-settings: normal;
   font-variation-settings: normal;
 }

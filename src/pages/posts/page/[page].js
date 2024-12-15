@@ -14,7 +14,15 @@ export default function Posts({ posts, pagination }) {
     },
   });
 
-  return <TemplateArchive title={title} posts={posts} slug={slug} pagination={pagination} metadata={metadata} />;
+  return (
+    <TemplateArchive
+      title={title}
+      posts={posts}
+      slug={slug}
+      pagination={pagination}
+      metadata={metadata}
+    />
+  );
 }
 
 export async function getStaticProps({ params = {} } = {}) {

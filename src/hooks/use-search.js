@@ -12,7 +12,7 @@ export const SEARCH_STATE_LOADED = 'LOADED';
 
 export const SearchContext = createContext();
 
-export const SearchProvider = (props) => {
+export const SearchProvider = props => {
   const search = useSearchState();
   return <SearchContext.Provider value={search} {...props} />;
 };

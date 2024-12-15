@@ -1,6 +1,10 @@
 import { getApolloClient } from '../lib/apollo-client';
 
-import { QUERY_ALL_CATEGORIES, QUERY_CATEGORY_BY_SLUG, QUERY_CATEGORY_SEO_BY_SLUG } from '../data/categories';
+import {
+  QUERY_ALL_CATEGORIES,
+  QUERY_CATEGORY_BY_SLUG,
+  QUERY_CATEGORY_SEO_BY_SLUG,
+} from '../data/categories';
 
 /**
  * categoryPathBySlug
@@ -68,7 +72,9 @@ export async function getCategoryBySlug(slug) {
       });
     } catch (e) {
       console.log(`[categories][getCategoryBySlug] Failed to query SEO plugin: ${e.message}`);
-      console.log('Is the SEO Plugin installed? If not, disable WORDPRESS_PLUGIN_SEO in next.config.js.');
+      console.log(
+        'Is the SEO Plugin installed? If not, disable WORDPRESS_PLUGIN_SEO in next.config.js.'
+      );
       throw e;
     }
 

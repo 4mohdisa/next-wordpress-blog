@@ -9,7 +9,6 @@
   @apply mr-[0.5em] after:content-["/"] after:ml-[0.5em] last:after:content-none;
 }
 
-
 .breadcrumbs a {
   @apply text-gray-800 no-underline;
 }
@@ -18,4 +17,3 @@
     @apply text-blue-500 underline;
   }
 }
-

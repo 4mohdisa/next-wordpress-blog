@@ -66,7 +66,9 @@ export async function getPostBySlug(slug) {
       });
     } catch (e) {
       console.log(`[posts][getPostBySlug] Failed to query SEO plugin: ${e.message}`);
-      console.log('Is the SEO Plugin installed? If not, disable WORDPRESS_PLUGIN_SEO in next.config.js.');
+      console.log(
+        'Is the SEO Plugin installed? If not, disable WORDPRESS_PLUGIN_SEO in next.config.js.'
+      );
       throw e;
     }
 
@@ -322,7 +324,7 @@ export async function getRelatedPosts(categories, postId, count = 5) {
     const filtered = posts.filter(({ postId: id }) => id !== postId);
     const sorted = sortObjectsByDate(filtered);
 
-    related.posts = sorted.map((post) => ({ title: post.title, slug: post.slug }));
+    related.posts = sorted.map(post => ({ title: post.title, slug: post.slug }));
   }
 
   if (!Array.isArray(related.posts) || related.posts.length === 0) {
@@ -342,7 +344,7 @@ export async function getRelatedPosts(categories, postId, count = 5) {
  */
 
 export function sortStickyPosts(posts) {
-  return [...posts].sort((post) => (post.isSticky ? -1 : 1));
+  return [...posts].sort(post => (post.isSticky ? -1 : 1));
 }
 
 /**

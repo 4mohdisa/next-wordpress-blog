@@ -1,6 +1,17 @@
-import { useEffect, useRef, useState, useCallback, AwaitedReactNode, JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal } from 'react';
+import {
+  useEffect,
+  useRef,
+  useState,
+  useCallback,
+  AwaitedReactNode,
+  JSXElementConstructor,
+  Key,
+  ReactElement,
+  ReactNode,
+  ReactPortal,
+} from 'react';
 import Link from 'next/link';
-import { Search, Menu, X, Moon, Sun } from "lucide-react";
+import { Search, Menu, X, Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
 
 import useSite from '../../hooks/use-site';
@@ -8,8 +19,8 @@ import useSearch, { SEARCH_STATE_LOADED } from '../../hooks/use-search';
 import { postPathBySlug } from '../../lib/posts';
 import { findMenuByLocation, MENU_LOCATION_NAVIGATION_DEFAULT } from '../../lib/menus';
 
-import { Button } from "../../@/components/ui/button"
-import { Input } from "../../@/components/ui/input"
+import { Button } from '../../@/components/ui/button';
+import { Input } from '../../@/components/ui/input';
 import {
   Sheet,
   SheetContent,
@@ -17,7 +28,7 @@ import {
   SheetTitle,
   SheetTrigger,
   SheetClose,
-} from "../../@/components/ui/sheet"
+} from '../../@/components/ui/sheet';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -26,7 +37,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "../../@/components/ui/navigation-menu"
+} from '../../@/components/ui/navigation-menu';
 import { getAllCategories } from '../../lib/categories';
 import { getAllAuthors } from '../../lib/users';
 import { UrlObject } from 'url';
@@ -63,7 +74,8 @@ const Nav = () => {
   const { metadata = {}, menus } = useSite();
   const { title } = metadata;
 
-  const navigationLocation = process.env.WORDPRESS_MENU_LOCATION_NAVIGATION || MENU_LOCATION_NAVIGATION_DEFAULT;
+  const navigationLocation =
+    process.env.WORDPRESS_MENU_LOCATION_NAVIGATION || MENU_LOCATION_NAVIGATION_DEFAULT;
   const navigation = findMenuByLocation(menus, navigationLocation);
 
   useEffect(() => {
@@ -94,23 +106,28 @@ const Nav = () => {
     search({ query: value });
   };
 
-  const handleOnDocumentClick = useCallback((e: MouseEvent) => {
-    if (!formRef.current?.contains(e.target as Node)) {
-      setSearchVisibility(SEARCH_HIDDEN);
-      setSearchQuery('');
-      clearSearch();
-    }
-    if (!mobileFormRef.current?.contains(e.target as Node)) {
-      setMobileSearchVisible(false);
-      setSearchQuery('');
-      clearSearch();
-    }
-  }, [clearSearch]);
+  const handleOnDocumentClick = useCallback(
+    (e: MouseEvent) => {
+      if (!formRef.current?.contains(e.target as Node)) {
+        setSearchVisibility(SEARCH_HIDDEN);
+        setSearchQuery('');
+        clearSearch();
+      }
+      if (!mobileFormRef.current?.contains(e.target as Node)) {
+        setMobileSearchVisible(false);
+        setSearchQuery('');
+        clearSearch();
+      }
+    },
+    [clearSearch]
+  );
 
   useEffect(() => {
     if (searchVisibility === SEARCH_VISIBLE || mobileSearchVisible) {
       document.body.addEventListener('click', handleOnDocumentClick, true);
-      const searchInput = (searchVisibility === SEARCH_VISIBLE ? formRef.current : mobileFormRef.current)?.querySelector('input[type="search"]') as HTMLInputElement;
+      const searchInput = (
+        searchVisibility === SEARCH_VISIBLE ? formRef.current : mobileFormRef.current
+      )?.querySelector('input[type="search"]') as HTMLInputElement;
       searchInput?.focus();
     }
     return () => {
@@ -119,7 +136,9 @@ const Nav = () => {
   }, [searchVisibility, mobileSearchVisible, handleOnDocumentClick]);
 
   const renderSearchResults = (results: SearchResult[], isMobile: boolean = false) => (
-    <ul className={`absolute ${isMobile ? 'top-[100%] left-0 right-0' : 'top-full left-0'} w-full mt-1 bg-white dark:bg-[#1E1E1E] border border-border-default rounded-md shadow-lg max-h-[300px] overflow-y-auto z-50`}>
+    <ul
+      className={`absolute ${isMobile ? 'top-[100%] left-0 right-0' : 'top-full left-0'} w-full mt-1 bg-white dark:bg-[#1E1E1E] border border-border-default rounded-md shadow-lg max-h-[300px] overflow-y-auto z-50`}
+    >
       {results.map(({ slug, title }) => (
         <li key={slug}>
           <Link
@@ -140,7 +159,10 @@ const Nav = () => {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <Link href="/" className="text-2xl text-black dark:text-white font-bold hover:text-link-default transition-colors">
+            <Link
+              href="/"
+              className="text-2xl text-black dark:text-white font-bold hover:text-link-default transition-colors"
+            >
               {title}
             </Link>
           </div>
@@ -149,15 +171,33 @@ const Nav = () => {
           <div className="hidden lg:flex items-center space-x-8">
             <NavigationMenu>
               <NavigationMenuList>
-                {navigation?.map((listItem: { id: Key | null | undefined; path: string | UrlObject; label: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; }) => (
-                  <NavigationMenuItem key={listItem.id}>
-                    <Link href={listItem.path} legacyBehavior passHref>
-                      <NavigationMenuLink className={`${navigationMenuTriggerStyle()} text-black dark:text-white hover:text-link-default dark:hover:text-link-hover`}>
-                        {listItem.label}
-                      </NavigationMenuLink>
-                    </Link>
-                  </NavigationMenuItem>
-                ))}
+                {navigation?.map(
+                  (listItem: {
+                    id: Key | null | undefined;
+                    path: string | UrlObject;
+                    label:
+                      | string
+                      | number
+                      | bigint
+                      | boolean
+                      | ReactElement<any, string | JSXElementConstructor<any>>
+                      | Iterable<ReactNode>
+                      | ReactPortal
+                      | Promise<AwaitedReactNode>
+                      | null
+                      | undefined;
+                  }) => (
+                    <NavigationMenuItem key={listItem.id}>
+                      <Link href={listItem.path} legacyBehavior passHref>
+                        <NavigationMenuLink
+                          className={`${navigationMenuTriggerStyle()} text-black dark:text-white hover:text-link-default dark:hover:text-link-hover`}
+                        >
+                          {listItem.label}
+                        </NavigationMenuLink>
+                      </Link>
+                    </NavigationMenuItem>
+                  )
+                )}
 
                 {/* Categories Dropdown */}
                 <NavigationMenuItem>
@@ -166,10 +206,10 @@ const Nav = () => {
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid w-[200px] gap-2 p-4 bg-white dark:bg-[#1E1E1E] shadow-lg rounded-md max-h-[60vh] overflow-y-auto">
-                      {categories.map((category) => (
+                      {categories.map(category => (
                         <li key={category}>
-                          <Link 
-                            href={`/categories/${category.toLowerCase()}`} 
+                          <Link
+                            href={`/categories/${category.toLowerCase()}`}
                             className="block p-2 text-black dark:text-white hover:bg-highlighted-bg dark:hover:bg-[#333333] rounded-md transition-colors truncate"
                             title={category}
                           >
@@ -188,10 +228,10 @@ const Nav = () => {
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid w-[200px] gap-2 p-4 bg-white dark:bg-[#1E1E1E] shadow-lg rounded-md max-h-[60vh] overflow-y-auto">
-                      {authors.map((author) => (
+                      {authors.map(author => (
                         <li key={author}>
-                          <Link 
-                            href={`/authors/${author.toLowerCase()}`} 
+                          <Link
+                            href={`/authors/${author.toLowerCase()}`}
                             className="block p-2 text-black dark:text-white hover:bg-highlighted-bg dark:hover:bg-[#333333] rounded-md transition-colors truncate"
                             title={author}
                           >
@@ -207,11 +247,7 @@ const Nav = () => {
 
             {/* Search and Theme Toggle */}
             <div className="flex items-center space-x-4">
-              <form
-                ref={formRef}
-                className="relative"
-                onSubmit={(e) => e.preventDefault()}
-              >
+              <form ref={formRef} className="relative" onSubmit={e => e.preventDefault()}>
                 <Input
                   type="search"
                   placeholder="Search..."
@@ -219,7 +255,9 @@ const Nav = () => {
                   value={searchQuery}
                   onChange={handleOnSearch}
                 />
-                {results.length > 0 && searchVisibility === SEARCH_VISIBLE && renderSearchResults(results)}
+                {results.length > 0 &&
+                  searchVisibility === SEARCH_VISIBLE &&
+                  renderSearchResults(results)}
               </form>
 
               <Button
@@ -250,11 +288,16 @@ const Nav = () => {
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-full sm:w-[300px] bg-white dark:bg-black border-l border-border-default p-0 h-full">
+              <SheetContent
+                side="right"
+                className="w-full sm:w-[300px] bg-white dark:bg-black border-l border-border-default p-0 h-full"
+              >
                 <div className="p-6 relative">
                   <SheetHeader>
                     <div className="flex justify-between items-center">
-                      <SheetTitle className="text-black dark:text-white font-sans">{title}</SheetTitle>
+                      <SheetTitle className="text-black dark:text-white font-sans">
+                        {title}
+                      </SheetTitle>
                       <SheetClose className="text-black dark:text-white">
                         <X className="h-5 w-5" />
                       </SheetClose>
@@ -265,7 +308,7 @@ const Nav = () => {
                     <form
                       ref={mobileFormRef}
                       className="relative"
-                      onSubmit={(e) => e.preventDefault()}
+                      onSubmit={e => e.preventDefault()}
                     >
                       <Input
                         type="search"
@@ -275,30 +318,46 @@ const Nav = () => {
                         onChange={handleMobileSearch}
                       />
                       {results.length > 0 && mobileSearchVisible && (
-                        <div className="relative w-full">
-                          {renderSearchResults(results, true)}
-                        </div>
+                        <div className="relative w-full">{renderSearchResults(results, true)}</div>
                       )}
                     </form>
 
                     {/* Navigation Links */}
                     <div className="space-y-2">
-                      {navigation?.map((listItem: { id: Key | null | undefined; path: string | UrlObject; label: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; }) => (
-                        <Link
-                          key={listItem.id}
-                          href={listItem.path}
-                          className="block py-2 text-black dark:text-white hover:text-link-default dark:hover:text-link-hover font-medium"
-                        >
-                          {listItem.label}
-                        </Link>
-                      ))}
+                      {navigation?.map(
+                        (listItem: {
+                          id: Key | null | undefined;
+                          path: string | UrlObject;
+                          label:
+                            | string
+                            | number
+                            | bigint
+                            | boolean
+                            | ReactElement<any, string | JSXElementConstructor<any>>
+                            | Iterable<ReactNode>
+                            | ReactPortal
+                            | Promise<AwaitedReactNode>
+                            | null
+                            | undefined;
+                        }) => (
+                          <Link
+                            key={listItem.id}
+                            href={listItem.path}
+                            className="block py-2 text-black dark:text-white hover:text-link-default dark:hover:text-link-hover font-medium"
+                          >
+                            {listItem.label}
+                          </Link>
+                        )
+                      )}
                     </div>
 
                     {/* Categories */}
                     <div className="space-y-2">
-                      <h3 className="font-semibold text-black dark:text-white font-sans">Categories</h3>
+                      <h3 className="font-semibold text-black dark:text-white font-sans">
+                        Categories
+                      </h3>
                       <div className="max-h-[200px] overflow-y-auto">
-                        {categories.map((category) => (
+                        {categories.map(category => (
                           <Link
                             key={category}
                             href={`/categories/${category.toLowerCase()}`}
@@ -313,9 +372,11 @@ const Nav = () => {
 
                     {/* Authors */}
                     <div className="space-y-2">
-                      <h3 className="font-semibold text-black dark:text-white font-sans">Authors</h3>
+                      <h3 className="font-semibold text-black dark:text-white font-sans">
+                        Authors
+                      </h3>
                       <div className="max-h-[200px] overflow-y-auto">
-                        {authors.map((author) => (
+                        {authors.map(author => (
                           <Link
                             key={author}
                             href={`/authors/${author.toLowerCase()}`}

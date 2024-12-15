@@ -5,8 +5,8 @@ import styles from './Image.module.scss';
 interface ImageProps {
   children?: ReactNode;
   className?: string;
-  width?: "100%" | number;
-  height?: "auto" | number;
+  width?: '100%' | number;
+  height?: 'auto' | number;
   src: string;
   alt?: string;
   srcSet?: string;

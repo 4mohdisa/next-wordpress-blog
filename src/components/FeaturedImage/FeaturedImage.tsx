@@ -1,8 +1,8 @@
-"use client"
+'use client';
 
 import React from 'react';
 import Image from 'next/image';
-import { cn } from '../../@/lib/utils'; 
+import { cn } from '../../@/lib/utils';
 
 interface FeaturedImageProps {
   className?: string;
@@ -11,7 +11,7 @@ interface FeaturedImageProps {
   width?: number;
   height?: number;
   priority?: boolean;
-  loading?: "lazy" | "eager";
+  loading?: 'lazy' | 'eager';
 }
 
 const FeaturedImage: React.FC<FeaturedImageProps> = ({
@@ -21,20 +21,22 @@ const FeaturedImage: React.FC<FeaturedImageProps> = ({
   width = 960,
   height = 400,
   priority = false,
-  loading = "lazy"
+  loading = 'lazy',
 }) => {
   if (!src) return null;
 
   return (
-    <div className={cn(
-      "relative w-full overflow-hidden rounded-lg mb-6",
-      "aspect-[16/9] bg-gray-100 dark:bg-gray-800",
-      className
-    )}>
+    <div
+      className={cn(
+        'relative w-full overflow-hidden rounded-lg mb-6',
+        'aspect-[16/9] bg-gray-100 dark:bg-gray-800',
+        className
+      )}
+    >
       <Image
         className={cn(
-          "object-cover transition-all hover:scale-105 duration-300",
-          "rounded-lg border border-gray-200 dark:border-gray-700"
+          'object-cover transition-all hover:scale-105 duration-300',
+          'rounded-lg border border-gray-200 dark:border-gray-700'
         )}
         src={src}
         alt={alt}
